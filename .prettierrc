@@ -28,7 +28,8 @@
     "^@/types(/.*)?$",
     "^[./]"
   ],
-  "importOrderSeparation": false,
+  "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
-  "importOrderCaseInsensitive": true
+  "importOrderCaseInsensitive": true,
+  "jsxBracketSameLine": false
 }

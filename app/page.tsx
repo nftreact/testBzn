@@ -1,10 +1,10 @@
-import Test from '@/components/Test'
+// import Test from '@/components/Test'
+import { Flex, Text } from '@radix-ui/themes';
 
 export default function Home() {
   return (
-    <>
-      <div>landing page</div>
-      <Test value={1232} />
-    </>
-  )
+    <Flex height={'100vh'} justify={'center'} align={'center'}>
+      <Text>landing page</Text>
+    </Flex>
+  );
 }
