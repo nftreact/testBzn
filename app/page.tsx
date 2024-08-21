@@ -16,6 +16,9 @@ export default function Home() {
         <iframe></iframe>
       </Flex>
       <RecentPlan />
+      <Flex justify='center'>
+        <iframe></iframe>
+      </Flex>
       <RecentPoints />
     </Flex>
   );
