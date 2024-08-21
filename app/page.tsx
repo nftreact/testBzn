@@ -1,10 +1,13 @@
-// import Test from '@/components/Test'
-import { Flex, Text } from '@radix-ui/themes';
+import { GeneratePlanCallToAction, Hero, RecentPlan, RecentPoints } from '@/components/landing';
+import { Flex } from '@/libs/primitives';
 
 export default function Home() {
   return (
-    <Flex height={'100vh'} justify={'center'} align={'center'}>
-      <Text>landing page</Text>
+    <Flex direction={'column'} gap={'10px'}>
+      <Hero />
+      <GeneratePlanCallToAction />
+      <RecentPlan />
+      <RecentPoints />
     </Flex>
   );
 }
