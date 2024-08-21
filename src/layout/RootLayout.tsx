@@ -16,5 +16,4 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
     </>
   );
 };
-
 export default RootLayout;

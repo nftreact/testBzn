@@ -4,8 +4,14 @@ import React from 'react';
 
 import { styled } from 'styled-components';
 
+import Home from '../../app/page';
+
 const MobileHeader = () => {
-  return <Root>MobileHeader</Root>;
+  return (
+    <Root>
+      <Home />
+    </Root>
+  );
 };
 
 export default MobileHeader;
