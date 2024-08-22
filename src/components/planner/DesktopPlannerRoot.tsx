@@ -103,6 +103,12 @@ const DesktopPlannerRoot = () => {
     },
   ];
 
+  const SortByItem = [
+    { key: 'پربازدید', value: 'پربازدید', id: 1 },
+    { key: 'معمولی', value: 'معمولی', id: 2 },
+    { key: 'بکرو ناشناخته', value: 'بکرو ناشناخته', id: 3 },
+  ];
+
   /**
    * useEffect
    * _______________________________________________________________________________
@@ -134,6 +140,7 @@ const DesktopPlannerRoot = () => {
       means_of_travel: '',
       place_of_residence: '',
       Type_of_tourist_place: '',
+      sortBy: '',
     },
   });
   const { watch } = methods;
@@ -178,6 +185,18 @@ const DesktopPlannerRoot = () => {
               placeholder={'نوع مکان گردشگری'}
               store='Type_of_tourist_place'
             />
+            <SelectCompnent items={SortByItem} placeholder={'نمایش بر اساس'} store='sortBy' />
+          </Flex>
+        </Flex>
+        <Flex gap={'10px'} direction={'column'}>
+          <Text>مسافران</Text>
+          <Flex gap={'20px'}>
+            <SelectCompnent
+              items={Type_of_tourist_place}
+              placeholder={'نوع مکان گردشگری'}
+              store='Type_of_tourist_place'
+            />
+            <SelectCompnent items={SortByItem} placeholder={'نمایش بر اساس'} store='sortBy' />
           </Flex>
         </Flex>
       </FormProvider>
