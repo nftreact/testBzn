@@ -29,9 +29,10 @@
     "react": "18",
     "react-dom": "18",
     "react-hook-form": "7.52.2",
+    "react-multi-date-picker": "^4.5.2",
     "react-toastify": "10.0.5",
     "select": "^1.1.2",
-    "shadcn-ui": "^0.8.0",
+    "sheet": "^0.2.0",
     "styled-components": "6.1.12",
     "yup": "1.4.0"
   },

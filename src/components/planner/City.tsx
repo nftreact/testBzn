@@ -1,5 +1,7 @@
 'use client';
 
+import { useFormContext } from 'react-hook-form';
+
 import { Select } from '@radix-ui/themes';
 import styled from 'styled-components';
 
@@ -23,6 +25,7 @@ const City = ({ provinceItems, title, cityPlaceholder, provincePlaceholder, city
    * const and variables
    * _______________________________________________________________________________
    */
+  const { setValue, watch } = useFormContext();
 
   /**
    * useEffect
@@ -40,24 +43,31 @@ const City = ({ provinceItems, title, cityPlaceholder, provincePlaceholder, city
    */
   return (
     <Root width={'100%'} direction={'column'} gap={'8px'}>
-      <Text>{title}</Text>
+      <Text style={{ paddingInline: '7px' }}>{title}</Text>
       <Flex gap={'10px'} direction={'column'}>
-        <Select.Root defaultValue=''>
+        <Select.Root
+          size={'3'}
+          value={watch('citties')}
+          onValueChange={value => setValue('citties', value)} // Replace 'city' with the actual field name
+        >
           <Select.Trigger placeholder={cityPlaceholder} />
           <Select.Content position='popper' style={{ maxHeight: '200px' }}>
             <Select.Group style={{ width: '100%' }}>
-              {provinceItems.map(item => {
-                return (
-                  <Select.Item key={item.id} value={item.name}>
-                    {item.full_name}
-                  </Select.Item>
-                );
-              })}
+              {provinceItems.map(item => (
+                <Select.Item key={item.id} value={item.name}>
+                  {item.full_name}
+                </Select.Item>
+              ))}
             </Select.Group>
           </Select.Content>
         </Select.Root>
 
-        <Select.Root defaultValue=''>
+        <Select.Root
+          size={'3'}
+          defaultValue={''}
+          value={watch('origin_province')}
+          onValueChange={value => setValue('origin_province', value)}
+        >
           <Select.Trigger placeholder={provincePlaceholder} />
           <Select.Content position='popper' style={{ maxHeight: '200px' }}>
             <Select.Group style={{ width: '100%' }}>

@@ -1,8 +1,12 @@
 'use client';
 
+import { FormProvider, useForm } from 'react-hook-form';
+
 import { Flex } from '@/libs/primitives';
 
 import City from './City';
+import EndTimeAndDate from './EndTimeAndDate';
+import StartTimeAndDate from './StartTimeAndDate';
 
 /**
  * props
@@ -14,7 +18,6 @@ const PlannerRoot = () => {
    * const and variables
    * _______________________________________________________________________________
    */
-
   const cityItem = [
     {
       full_name: 'آذربايجان شرقی - تبریز',
@@ -44,20 +47,42 @@ const PlannerRoot = () => {
    * _______________________________________________________________________________
    */
 
+  const methods = useForm({
+    defaultValues: {
+      citties: '',
+      origin_province: '',
+      startTime: {
+        time: '',
+        date: '',
+      },
+      endTime: {
+        time: '',
+        date: '',
+      },
+    },
+  });
+  const { watch } = methods;
+
+  console.log(watch(), 'datakhjblkjfdsbgksfdg');
+
   /**
    * template
    * _______________________________________________________________________________
    */
   return (
-    <Flex>
-      <City
-        provinceItems={cityItem}
-        cityItems={cityItem}
-        title='آدرس مبدا'
-        cityPlaceholder={'استان'}
-        provincePlaceholder={'استان'}
-      />
-    </Flex>
+    <FormProvider {...methods}>
+      <Flex gap={'16px'} direction={'column'}>
+        <City
+          provinceItems={cityItem}
+          cityItems={cityItem}
+          title='آدرس مبدا'
+          cityPlaceholder={'استان'}
+          provincePlaceholder={'شهر'}
+        />
+        <StartTimeAndDate />
+        <EndTimeAndDate />
+      </Flex>
+    </FormProvider>
   );
 };
 
