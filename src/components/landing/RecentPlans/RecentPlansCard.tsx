@@ -1,10 +1,12 @@
-// components/Card.tsx
 import React from 'react';
 import { FaUser } from 'react-icons/fa';
 
 import * as Avatar from '@radix-ui/react-avatar';
 import * as Primitive from '@radix-ui/themes';
 import styled from 'styled-components';
+
+import { recentPlans } from '@/constants/LandingPage/RecentPlans';
+import { Flex } from '@/libs/primitives';
 
 interface CardProps {
   userName: string;
@@ -28,7 +30,7 @@ const RecentPlansCard: React.FC<CardProps> = ({
   return (
     <CardContainer>
       <Primitive.Flex>
-        <CardHeader direction='column'>
+        <CardHeader direction='row' gapX={'0'}>
           <Avatar.Root
             style={{
               display: 'inline-flex',
@@ -39,6 +41,7 @@ const RecentPlansCard: React.FC<CardProps> = ({
               borderRadius: '100%',
               backgroundColor: '#D4D4D4',
               marginRight: '10px',
+              marginLeft: '10px',
             }}
           >
             <Avatar.Image
@@ -52,17 +55,25 @@ const RecentPlansCard: React.FC<CardProps> = ({
           </Avatar.Root>
           <CardInfo>
             <UserName>{userName}</UserName>
-            <CreationDate>{creationDate}</CreationDate>
+            {isPremium && <PremiumBadge>★</PremiumBadge>}
           </CardInfo>
-          {isPremium && <PremiumBadge>★</PremiumBadge>}
         </CardHeader>
       </Primitive.Flex>
+      <CreationDate>{creationDate}</CreationDate>
       <CardBody>
         <TravelRoute>
-          {from} to {to}
+          {from} ------------------------ {to}
         </TravelRoute>
-        {companionCount !== undefined && <CompanionCount>Companions: {companionCount}</CompanionCount>}
-        <TravelDays>Days: {travelDays}</TravelDays>
+        {companionCount !== undefined && (
+          <CompanionCount>
+            <Flex justify={'between'}>
+              {recentPlans.companions} {companionCount}
+            </Flex>
+          </CompanionCount>
+        )}
+        <TravelDays>
+          {recentPlans.days} {travelDays}
+        </TravelDays>
       </CardBody>
     </CardContainer>
   );
@@ -86,15 +97,21 @@ const CardHeader = styled(Primitive.Flex)`
 `;
 
 const CardInfo = styled(Primitive.Box)`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
   flex-grow: 1;
 `;
 
 const UserName = styled(Primitive.Text)`
+  justify-items: center;
   font-size: 12px;
   font-weight: 400;
 `;
 
 const CreationDate = styled(Primitive.Text)`
+  display: flex;
+  justify-content: center;
   font-size: 10px;
   color: #373737;
 `;
@@ -107,6 +124,8 @@ const PremiumBadge = styled(Primitive.Text)`
 `;
 
 const CardBody = styled(Primitive.Box)`
+  display: flex;
+  flex-direction: column;
   margin-top: 16px;
 `;
 
@@ -120,10 +139,13 @@ const CompanionCount = styled(Primitive.Text)`
   font-size: 10px;
   font-weight: 400;
   margin-bottom: 8px;
+  /* display: flex;
+  justify-content: space-between; */
 `;
 
 const TravelDays = styled(Primitive.Text)`
-  font-size: 14px;
+  font-size: 10px;
+  font-weight: 400;
 `;
 
 // import React from 'react';

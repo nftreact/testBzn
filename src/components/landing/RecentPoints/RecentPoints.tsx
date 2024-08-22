@@ -1,6 +1,6 @@
 import { Flex, Section } from '@/libs/primitives';
 
-import RecentPointsCard from './RecentPoints/RecentPointsCard';
+import RecentPointsCard from './RecentPointsCard';
 
 interface RecentPointProps {
   data: Array<{

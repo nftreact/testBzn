@@ -1,8 +1,6 @@
 'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
-import { Text } from '@radix-ui/themes';
-import styled from 'styled-components';
+import { Avatar, Card, Inset, Text } from '@radix-ui/themes';
 
 import { Box, Flex } from '@/libs/primitives';
 
@@ -15,60 +13,33 @@ interface CardProps {
 
 const RecentPointsCard: React.FC<CardProps> = ({ pictureUrl, title, rating, address }) => {
   return (
-    <CardWrapper align='center' justify='between'>
-      <CardInfo>
-        <StyledAvatar>
-          <AvatarImage src={pictureUrl} alt={title} />
-          <AvatarFallback>?</AvatarFallback>
-        </StyledAvatar>
-        <CardTitle>
-          <Text>{title}</Text>
-          <CardRating>
-            <Text>★{rating.toFixed(1)}/5</Text>
-          </CardRating>
-        </CardTitle>
-        <CardAddress>
-          <Text>{address}</Text>
-        </CardAddress>
-      </CardInfo>
-    </CardWrapper>
+    <Box>
+      <Card size='1'>
+        <Flex direction={'column'}>
+          <Inset clip='padding-box' side='right'>
+            <Avatar
+              size='8'
+              src={pictureUrl}
+              // src='https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?&w=256&h=256&q=70&crop=focalpoint&fp-x=0.5&fp-y=0.3&fp-z=1&fit=crop'
+              fallback='A'
+            />
+          </Inset>
+          <Flex direction={'column'}>
+            <Flex justify={'between'} mb={'2'}>
+              <Text weight={'bold'} size={'4'}>
+                {title}
+              </Text>
+
+              <Text>★{rating.toFixed(1)}</Text>
+            </Flex>
+            <Flex>
+              <Text>{address}</Text>
+            </Flex>
+          </Flex>
+        </Flex>
+      </Card>
+    </Box>
   );
 };
 
 export default RecentPointsCard;
-
-const CardWrapper = styled(Flex)`
-  border: 1px solid #d3d3d3;
-  border-radius: 8px;
-  background-color: #f5f5f5;
-  padding: 10px;
-  margin-bottom: 10px;
-`;
-
-const CardInfo = styled(Box)`
-  flex-grow: 1;
-  margin-right: 10px;
-`;
-
-const CardTitle = styled(Flex)`
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-  margin-bottom: 5px;
-`;
-
-const CardRating = styled(Box)`
-  color: #666666;
-`;
-
-const CardAddress = styled(Box)`
-  color: #666666;
-`;
-
-const StyledAvatar = styled(Avatar)`
-  width: 60px;
-  height: 60px;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: #e0e0e0;
-`;

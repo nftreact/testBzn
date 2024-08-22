@@ -2,24 +2,14 @@
 
 import React from 'react';
 
-import styled from 'styled-components';
-
-import { Box, Section } from '@/libs/primitives';
+import { Flex } from '@/libs/primitives';
 
 const Banner = () => {
   return (
-    <Section p='1'>
-      <BoxRoot>Banner</BoxRoot>
-    </Section>
+    <Flex justify={'center'} align={'center'} height={'200px'} style={{ border: '1px solid #6a6a6a' }}>
+      Root
+    </Flex>
   );
 };
 
 export default Banner;
-
-const BoxRoot = styled(Box)`
-  display: flex;
-  height: 200px;
-  justify-content: center;
-  border: 1px solid #6a6a6a;
-  width: 100%;
-`;
