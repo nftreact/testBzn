@@ -44,7 +44,7 @@ const TimeAndDate = ({ dateStore, timeStore }: TimeAndDateProps) => {
   return (
     <Root gap={'8px'} direction={'column'}>
       <Text style={{ paddingInline: '7px' }}>تاریخ و ساعت بازگشت</Text>
-      <Flex gap={'10px'} justify={'between'}>
+      <Flex gap={'20px'} justify={'between'}>
         <DatePicker
           key={'date'}
           value={watch().endTime.date}

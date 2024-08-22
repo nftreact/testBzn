@@ -4,37 +4,16 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import { Flex } from '@/libs/primitives';
 
-import CityAndProvince from './CityAndProvince';
-import TimeAndDate from './TimeAndDate';
-
 /**
  * props
  * _______________________________________________________________________________
  */
 
-const PlannerRoot = () => {
+const MobilePlannerRoot = () => {
   /**
    * const and variables
    * _______________________________________________________________________________
    */
-  const cityItem = [
-    {
-      full_name: 'آذربايجان شرقی - تبریز',
-      id: 1,
-      name: 'تبریز',
-      places_count: 81,
-      province_id: 1,
-      trip_value: 8,
-    },
-    {
-      full_name: 'آذربايجان شرقی - مراغه',
-      id: 4,
-      name: 'مراغه',
-      places_count: 8,
-      province_id: 1,
-      trip_value: 2,
-    },
-  ];
 
   /**
    * useEffect
@@ -75,9 +54,10 @@ const PlannerRoot = () => {
    * _______________________________________________________________________________
    */
   return (
-    <FormProvider {...methods}>
-      <Flex gap={'16px'} direction={'column'}>
-        <CityAndProvince
+    <Flex display={{ initial: 'flex', md: 'none' }} gap={'16px'} direction={'column'}>
+      <FormProvider {...methods}>
+        moblie view
+        {/* <CityAndProvince
           provinceStore={'origin[province]'}
           cityStore={'origin[city]'}
           provinceItems={cityItem}
@@ -96,13 +76,13 @@ const PlannerRoot = () => {
           provincePlaceholder={'شهر'}
         />
         <TimeAndDate dateStore={'startTime[date]'} timeStore={'startTime[time]'} />
-        <TimeAndDate dateStore={'endTime[date]'} timeStore={'endTime[time]'} />
-      </Flex>
-    </FormProvider>
+        <TimeAndDate dateStore={'endTime[date]'} timeStore={'endTime[time]'} /> */}
+      </FormProvider>
+    </Flex>
   );
 };
 
-export default PlannerRoot;
+export default MobilePlannerRoot;
 
 /**
  * styled-component

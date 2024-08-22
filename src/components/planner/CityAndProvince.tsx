@@ -54,7 +54,7 @@ const City = ({
   return (
     <Root width={'100%'} direction={'column'} gap={'8px'}>
       <Text style={{ paddingInline: '7px' }}>{title}</Text>
-      <Flex gap={'10px'} direction={'column'}>
+      <Flex gap={'10px'}>
         <Select.Root
           size={'3'}
           value={watch(provinceStore)}
@@ -106,5 +106,9 @@ export default City;
 const Root = styled(Flex)`
   & .rt-SelectTrigger:where(.rt-variant-surface) {
     width: 100%;
+  }
+
+  & .rt-Flex {
+    width: 48%;
   }
 `;
