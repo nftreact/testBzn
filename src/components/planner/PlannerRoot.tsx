@@ -4,9 +4,8 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import { Flex } from '@/libs/primitives';
 
-import City from './City';
-import EndTimeAndDate from './EndTimeAndDate';
-import StartTimeAndDate from './StartTimeAndDate';
+import CityAndProvince from './CityAndProvince';
+import TimeAndDate from './TimeAndDate';
 
 /**
  * props
@@ -49,8 +48,14 @@ const PlannerRoot = () => {
 
   const methods = useForm({
     defaultValues: {
-      citties: '',
-      origin_province: '',
+      origin: {
+        city: '',
+        province: '',
+      },
+      destination: {
+        city: '',
+        province: '',
+      },
       startTime: {
         time: '',
         date: '',
@@ -72,15 +77,26 @@ const PlannerRoot = () => {
   return (
     <FormProvider {...methods}>
       <Flex gap={'16px'} direction={'column'}>
-        <City
+        <CityAndProvince
+          provinceStore={'origin[province]'}
+          cityStore={'origin[city]'}
           provinceItems={cityItem}
           cityItems={cityItem}
           title='آدرس مبدا'
           cityPlaceholder={'استان'}
           provincePlaceholder={'شهر'}
         />
-        <StartTimeAndDate />
-        <EndTimeAndDate />
+        <CityAndProvince
+          provinceStore={'destination[province]'}
+          cityStore={'destination[city]'}
+          provinceItems={cityItem}
+          cityItems={cityItem}
+          title='آدرس مبدا'
+          cityPlaceholder={'استان'}
+          provincePlaceholder={'شهر'}
+        />
+        <TimeAndDate dateStore={'startTime[date]'} timeStore={'startTime[time]'} />
+        <TimeAndDate dateStore={'endTime[date]'} timeStore={'endTime[time]'} />
       </Flex>
     </FormProvider>
   );

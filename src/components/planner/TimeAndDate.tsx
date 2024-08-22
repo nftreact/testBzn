@@ -4,7 +4,7 @@ import persian from 'react-date-object/calendars/persian';
 import persian_fa from 'react-date-object/locales/persian_fa';
 import { useFormContext } from 'react-hook-form';
 import DatePicker, { DateObject } from 'react-multi-date-picker';
-import TimePicker from 'react-multi-date-picker/plugins/analog_time_picker';
+import TimePicker from 'react-multi-date-picker/plugins/time_picker';
 
 import styled from 'styled-components';
 
@@ -15,7 +15,12 @@ import { Flex, Text } from '@/libs/primitives';
  * _______________________________________________________________________________
  */
 
-const EndTimeAndDate = () => {
+type TimeAndDateProps = {
+  timeStore: string;
+  dateStore: string;
+};
+
+const TimeAndDate = ({ dateStore, timeStore }: TimeAndDateProps) => {
   /**
    * const and variables
    * _______________________________________________________________________________
@@ -49,18 +54,14 @@ const EndTimeAndDate = () => {
           locale={persian_fa}
           calendarPosition='bottom-right'
           onChange={(dateObject: DateObject | DateObject[] | any) => {
-            console.log(dateObject.format(), 'dateObjectdateObjectdateObject');
-            setValue('endTime[date]', dateObject.format());
+            setValue(dateStore, dateObject.format());
           }}
         />
         <DatePicker
           locale={persian_fa}
           placeholder='ساعت'
-          onChange={(dateObject: DateObject | DateObject[] | any, e) => {
-            console.log(e, 'eee');
-
-            console.log(dateObject, 'time');
-            setValue('endTime[time]', dateObject.format());
+          onChange={(dateObject: DateObject | DateObject[] | any) => {
+            setValue(timeStore, dateObject.format());
           }}
           key={'time'}
           disableDayPicker
@@ -72,7 +73,7 @@ const EndTimeAndDate = () => {
   );
 };
 
-export default EndTimeAndDate;
+export default TimeAndDate;
 
 /**
  * styled-component
@@ -81,9 +82,10 @@ export default EndTimeAndDate;
 
 const Root = styled(Flex)`
   & .rmdp-input {
-    padding: 9px 14px;
+    padding-block: 9px;
     border-radius: 8px;
     width: -webkit-fill-available;
+    padding-right: 10px;
   }
   & .rmdp-container {
     display: flex;

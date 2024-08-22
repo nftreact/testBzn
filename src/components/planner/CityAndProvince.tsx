@@ -18,9 +18,19 @@ type CityProps = {
   cityItems: Record<string, any>[];
   cityPlaceholder: string;
   provincePlaceholder: string;
+  provinceStore: string;
+  cityStore: string;
 };
 
-const City = ({ provinceItems, title, cityPlaceholder, provincePlaceholder, cityItems }: CityProps) => {
+const City = ({
+  provinceItems,
+  title,
+  cityPlaceholder,
+  provincePlaceholder,
+  cityItems,
+  cityStore,
+  provinceStore,
+}: CityProps) => {
   /**
    * const and variables
    * _______________________________________________________________________________
@@ -47,8 +57,8 @@ const City = ({ provinceItems, title, cityPlaceholder, provincePlaceholder, city
       <Flex gap={'10px'} direction={'column'}>
         <Select.Root
           size={'3'}
-          value={watch('citties')}
-          onValueChange={value => setValue('citties', value)} // Replace 'city' with the actual field name
+          value={watch(provinceStore)}
+          onValueChange={value => setValue(provinceStore, value)} // Replace 'city' with the actual field name
         >
           <Select.Trigger placeholder={cityPlaceholder} />
           <Select.Content position='popper' style={{ maxHeight: '200px' }}>
@@ -65,8 +75,8 @@ const City = ({ provinceItems, title, cityPlaceholder, provincePlaceholder, city
         <Select.Root
           size={'3'}
           defaultValue={''}
-          value={watch('origin_province')}
-          onValueChange={value => setValue('origin_province', value)}
+          value={watch(cityStore)}
+          onValueChange={value => setValue(cityStore, value)}
         >
           <Select.Trigger placeholder={provincePlaceholder} />
           <Select.Content position='popper' style={{ maxHeight: '200px' }}>
