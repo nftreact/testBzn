@@ -3,7 +3,7 @@
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import RecentPlansCard from '@/components/landing/recentPlans/RecentPlansCard';
+import RecentPlansCard from '@/components/landing/recent-plans/RecentPlansCard';
 import { recentPlans } from '@/constants/LandingPage/RecentPlans';
 import { Flex, Section, Text } from '@/libs/primitives';
 

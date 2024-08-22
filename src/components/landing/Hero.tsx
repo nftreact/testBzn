@@ -9,7 +9,7 @@ import { formattedDate } from '@/libs/utils/GetCurrentDay';
 
 const Hero = () => {
   return (
-    <Flex direction={{ initial: 'column', md: 'row' }} gap={'3'}>
+    <Flex justify={'between'} direction={{ initial: 'column', md: 'row' }} gap={'3'}>
       <Flex direction={'column'} gap='5px'>
         <Text>{formattedDate}</Text>
         <Heading>{heroTypo.Title}</Heading>

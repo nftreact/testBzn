@@ -6,7 +6,7 @@ import * as Primitive from '@radix-ui/themes';
 import styled from 'styled-components';
 
 import { recentPlans } from '@/constants/LandingPage/RecentPlans';
-import { Flex } from '@/libs/primitives';
+import { Flex, Text } from '@/libs/primitives';
 
 interface CardProps {
   userName: string;
@@ -30,7 +30,7 @@ const RecentPlansCard: React.FC<CardProps> = ({
   return (
     <CardContainer>
       <Primitive.Flex>
-        <CardHeader direction='row' gapX={'0'}>
+        <CardHeader direction='row'>
           <Avatar.Root
             style={{
               display: 'inline-flex',
@@ -60,21 +60,29 @@ const RecentPlansCard: React.FC<CardProps> = ({
         </CardHeader>
       </Primitive.Flex>
       <CreationDate>{creationDate}</CreationDate>
-      <CardBody>
+      <Flex direction={'column'}>
         <TravelRoute>
           {from} ------------------------ {to}
         </TravelRoute>
         {companionCount !== undefined && (
-          <CompanionCount>
-            <Flex justify={'between'}>
-              {recentPlans.companions} {companionCount}
-            </Flex>
-          </CompanionCount>
+          <Flex p={'1'} justify={'between'}>
+            <Text size={'1'} weight={'light'}>
+              {recentPlans.companions}
+            </Text>
+            <Text size={'1'} weight={'light'}>
+              {companionCount}
+            </Text>
+          </Flex>
         )}
-        <TravelDays>
-          {recentPlans.days} {travelDays}
-        </TravelDays>
-      </CardBody>
+        <Flex p={'1'} justify={'between'}>
+          <Text size={'1'} weight={'light'}>
+            {recentPlans.days}
+          </Text>
+          <Text size={'1'} weight={'light'}>
+            {travelDays}
+          </Text>
+        </Flex>
+      </Flex>
     </CardContainer>
   );
 };
@@ -123,72 +131,8 @@ const PremiumBadge = styled(Primitive.Text)`
   font-size: 20px;
 `;
 
-const CardBody = styled(Primitive.Box)`
-  display: flex;
-  flex-direction: column;
-  margin-top: 16px;
-`;
-
 const TravelRoute = styled(Primitive.Text)`
   font-size: 12px;
   font-weight: 500;
   margin-bottom: 8px;
 `;
-
-const CompanionCount = styled(Primitive.Text)`
-  font-size: 10px;
-  font-weight: 400;
-  margin-bottom: 8px;
-  /* display: flex;
-  justify-content: space-between; */
-`;
-
-const TravelDays = styled(Primitive.Text)`
-  font-size: 10px;
-  font-weight: 400;
-`;
-
-// import React from 'react';
-// import { FaUser } from 'react-icons/fa';
-
-// interface CardProps {
-//   userName: string;
-//   creationDate: string;
-//   from: string;
-//   to: string;
-//   travelDays: number;
-//   companionCount?: number;
-//   isPremium?: boolean;
-// }
-
-// const Card: React.FC<CardProps> = ({
-//   userName,
-//   creationDate,
-//   from,
-//   to,
-//   travelDays,
-//   companionCount,
-//   isPremium = false,
-// }) => {
-//   return (
-//     <div className='card'>
-//       <div className='card-header'>
-//         <FaUser className='avatar-icon' />
-//         <div className='card-info'>
-//           <h3 className='user-name'>{userName}</h3>
-//           <p className='creation-date'>{creationDate}</p>
-//         </div>
-//         {isPremium && <span className='premium-badge'>★</span>}
-//       </div>
-//       <div className='card-body'>
-//         <p className='travel-route'>
-//           {from} to {to}
-//         </p>
-//         {companionCount && <p>Companions: {companionCount}</p>}
-//         <p>Days: {travelDays}</p>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Card;
