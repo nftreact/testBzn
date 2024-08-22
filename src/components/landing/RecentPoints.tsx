@@ -1,17 +1,29 @@
-import React from 'react';
-
 import { Flex, Section } from '@/libs/primitives';
-import Card from '@/libs/primitives/components/Card';
 
-const RecentPoints: React.FC = () => {
+import RecentPointsCard from './RecentPoints/RecentPointsCard';
+
+interface RecentPointProps {
+  data: Array<{
+    pictureUrl: string;
+    title: string;
+    rating: number;
+    address: string;
+  }>;
+}
+const RecentPoints: React.FC<RecentPointProps> = ({ data }) => {
   return (
     <Section>
-      <Flex direction='column'>
-        <Card userName={'نام و عنوان'} creationDate={''} from={''} to={''} travelDays={0} />
-        <Card userName={'نام و عنوان'} creationDate={''} from={''} to={''} travelDays={0} />
-        <Card userName={'نام و عنوان'} creationDate={''} from={''} to={''} travelDays={0} />
-        <Card userName={'نام و عنوان'} creationDate={''} from={''} to={''} travelDays={0} />
-        <Card userName={'نام و عنوان'} creationDate={''} from={''} to={''} travelDays={0} />
+      <Flex direction='column' gap='10px'>
+        {data.map((item, index) => (
+          <RecentPointsCard
+            {...item}
+            key={index}
+            pictureUrl='#'
+            title='نام و عنوان'
+            rating={4.5}
+            address='تهران، خیابان اول، محله دوم، کوچه سوم، پلاک چهارم'
+          />
+        ))}
       </Flex>
     </Section>
   );

@@ -1,33 +1,46 @@
-// components/CardCarousel.tsx
+'use client';
+
+import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import RecentPlansCard from '@/components/landing/RecentPlans/RecentPlansCard';
 import { recentPlans } from '@/constants/LandingPage/RecentPlans';
 import { Flex, Section, Text } from '@/libs/primitives';
-import Card from '@/libs/primitives/components/Card';
 
-const RecentPlan: React.FC = () => {
+interface RecentPlanProps {
+  data: Array<{
+    userName: string;
+    creationDate: string;
+    from: string;
+    to: string;
+    travelDays: number;
+    companionCount: number;
+    isPremium: boolean;
+  }>;
+}
+
+const RecentPlan: React.FC<RecentPlanProps> = ({ data }) => {
   return (
-    <Section>
+    <Section p='2'>
       <Text size='4' weight='medium'>
         {recentPlans.recentPlans}
       </Text>
-      <Flex direction='row'>
+      <Flex>
         <Swiper
-          spaceBetween={10}
+          spaceBetween={1}
           slidesPerView={'auto'}
-          style={{ width: '100%', border: '1px solid red', flexDirection: 'row' }} // Ensure Swiper takes full width
+          style={{ width: '100%', flexDirection: 'row' }} // Ensure Swiper takes full width
         >
           {data.map((item, index) => (
             <SwiperSlide
               key={index}
               style={{
-                border: '1px solid blue',
                 display: 'flex', // Ensure slide content is centered
-                justifyContent: 'center',
-                width: '100%', // Ensure slide takes width of its content
+                justifyContent: 'end',
+                width: 'auto', // Ensure slide takes width of its content
               }}
             >
-              <Card
+              <RecentPlansCard
                 {...item}
                 key={index}
                 creationDate='تاریخ ساخت'
@@ -47,89 +60,3 @@ const RecentPlan: React.FC = () => {
 };
 
 export default RecentPlan;
-
-const data = [
-  {
-    userName: 'نام کاربر',
-    creationDate: 'تاریخ ساخت',
-    from: 'تهران',
-    to: 'شیراز',
-    travelDays: 10,
-    companionCount: 8,
-    isPremium: true,
-  },
-  {
-    userName: 'نام کاربر',
-    creationDate: 'تاریخ ساخت',
-    from: 'تهران',
-    to: 'شیراز',
-    travelDays: 10,
-    companionCount: 8,
-    isPremium: true,
-  },
-  {
-    userName: 'نام کاربر',
-    creationDate: 'تاریخ ساخت',
-    from: 'تهران',
-    to: 'شیراز',
-    travelDays: 10,
-    companionCount: 8,
-    isPremium: true,
-  },
-  {
-    userName: 'نام کاربر',
-    creationDate: 'تاریخ ساخت',
-    from: 'تهران',
-    to: 'شیراز',
-    travelDays: 10,
-    companionCount: 8,
-    isPremium: true,
-  },
-  {
-    userName: 'نام کاربر',
-    creationDate: 'تاریخ ساخت',
-    from: 'تهران',
-    to: 'شیراز',
-    travelDays: 10,
-    companionCount: 8,
-    isPremium: true,
-  },
-  {
-    userName: 'نام کاربر',
-    creationDate: 'تاریخ ساخت',
-    from: 'تهران',
-    to: 'شیراز',
-    travelDays: 10,
-    companionCount: 8,
-    isPremium: true,
-  },
-  {
-    userName: 'نام کاربر',
-    creationDate: 'تاریخ ساخت',
-    from: 'تهران',
-    to: 'شیراز',
-    travelDays: 10,
-    companionCount: 8,
-    isPremium: true,
-  },
-  {
-    userName: 'نام کاربر',
-    creationDate: 'تاریخ ساخت',
-    from: 'تهران',
-    to: 'شیراز',
-    travelDays: 10,
-    companionCount: 8,
-    isPremium: true,
-  },
-  {
-    userName: 'نام کاربر',
-    creationDate: 'تاریخ ساخت',
-    from: 'تهران',
-    to: 'شیراز',
-    travelDays: 10,
-    companionCount: 8,
-    isPremium: true,
-  },
-
-  // Add more card data as needed...
-];

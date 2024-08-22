@@ -16,7 +16,7 @@ interface CardProps {
   isPremium?: boolean;
 }
 
-const Card: React.FC<CardProps> = ({
+const RecentPlansCard: React.FC<CardProps> = ({
   userName,
   creationDate,
   from,
@@ -27,8 +27,8 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <CardContainer>
-      <Primitive.Flex direction='row'>
-        <CardHeader>
+      <Primitive.Flex>
+        <CardHeader direction='column'>
           <Avatar.Root
             style={{
               display: 'inline-flex',
@@ -68,7 +68,7 @@ const Card: React.FC<CardProps> = ({
   );
 };
 
-export default Card;
+export default RecentPlansCard;
 
 // Styled components using Radix UI Primitives
 const CardContainer = styled(Primitive.Box)`
@@ -76,9 +76,9 @@ const CardContainer = styled(Primitive.Box)`
   border-radius: 8px;
   padding: 8px;
   background-color: #fcfdfc;
-  width: 180px; // Fixed width for each card
+  width: 200px; // Fixed width for each card
   max-width: auto; // Ensure consistency
-  margin: 0 auto;
+  margin: 10px 0 0 16px;
 `;
 
 const CardHeader = styled(Primitive.Flex)`

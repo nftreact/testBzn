@@ -1,9 +1,8 @@
-'use client';
-
-import { Box } from '@radix-ui/themes';
-import { styled } from 'styled-components';
+import { Separator } from '@radix-ui/themes/dist/esm/components/context-menu.js';
 
 import { GeneratePlanCallToAction, Hero, RecentPlan, RecentPoints } from '@/components/landing';
+import Banner from '@/components/landing/Banner';
+import { recentPlansData, recentPointsData } from '@/constants/LandingPage/MockData';
 import { Flex } from '@/libs/primitives';
 
 export default function Home() {
@@ -11,22 +10,11 @@ export default function Home() {
     <Flex direction='column' gap='10px' m='auto' p='4'>
       <Hero />
       <GeneratePlanCallToAction />
-      <BoxRoot />
-      <Flex justify='center'>
-        <iframe></iframe>
-      </Flex>
-      <RecentPlan />
-      <Flex justify='center'>
-        <iframe></iframe>
-      </Flex>
-      <RecentPoints />
+      <Separator />
+      <Banner />
+      <RecentPlan data={recentPlansData} />
+      <Banner />
+      <RecentPoints data={recentPointsData} />
     </Flex>
   );
 }
-
-const BoxRoot = styled(Box)`
-  height: 1px;
-  width: 100%;
-  background-color: #6a6a6a;
-  margin: 30px 0 20px; /* Spacing around the line */
-`;
