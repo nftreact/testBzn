@@ -6,18 +6,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { recentPlans } from '@/constants/LandingPage/RecentPlans';
 import { Flex, Text } from '@/libs/primitives';
 
+import { RecentPlanCard } from '../types';
 import RecentPlansCard from './RecentPlansCard';
 
 interface RecentPlanProps {
-  data: Array<{
-    userName: string;
-    creationDate: string;
-    from: string;
-    to: string;
-    travelDays: number;
-    companionCount: number;
-    isPremium: boolean;
-  }>;
+  data: RecentPlanCard[];
 }
 
 const RecentPlan: React.FC<RecentPlanProps> = ({ data }) => {

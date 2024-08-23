@@ -1,14 +1,10 @@
 import { Flex } from '@/libs/primitives';
 
-import RecentPointsCard from '../RecentPoints/RecentPointsCard';
+import { RecentPointCard } from '../types';
+import RecentPointsCard from './RecentPointsCard';
 
 interface RecentPointProps {
-  data: Array<{
-    pictureUrl: string;
-    title: string;
-    rating: number;
-    address: string;
-  }>;
+  data: RecentPointCard[];
 }
 const RecentPoints: React.FC<RecentPointProps> = ({ data }) => {
   return (

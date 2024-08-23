@@ -4,17 +4,9 @@ import styled from 'styled-components';
 
 import { Flex, Text } from '@/libs/primitives';
 
-interface CardProps {
-  userName: string;
-  creationDate: string;
-  from: string;
-  to: string;
-  travelDays: number;
-  companionCount?: number;
-  isPremium?: boolean;
-}
+import { RecentPlanCard } from '../types';
 
-const RecentPlansCard: React.FC<CardProps> = ({
+const RecentPlansCard: React.FC<RecentPlanCard> = ({
   userName,
   creationDate,
   from,

@@ -48,6 +48,7 @@ const Root = styled(Flex)`
   left: 0;
   right: 0;
   padding: 10px;
+  z-index: 1;
 
   @media (min-width: 768px) {
     display: none;
