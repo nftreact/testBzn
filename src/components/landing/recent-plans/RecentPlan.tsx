@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { recentPlans } from '@/constants/LandingPage/RecentPlans';
 import { Flex, Text } from '@/libs/primitives';
 
-import RecentPlansCard from '../RecentPlans/RecentPlansCard';
+import RecentPlansCard from './RecentPlansCard';
 
 interface RecentPlanProps {
   data: Array<{
