@@ -3,9 +3,10 @@
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import RecentPlansCard from '@/components/landing/recentPlans/RecentPlansCard';
 import { recentPlans } from '@/constants/LandingPage/RecentPlans';
-import { Flex, Section, Text } from '@/libs/primitives';
+import { Flex, Text } from '@/libs/primitives';
+
+import RecentPlansCard from '../RecentPlans/RecentPlansCard';
 
 interface RecentPlanProps {
   data: Array<{
@@ -21,41 +22,36 @@ interface RecentPlanProps {
 
 const RecentPlan: React.FC<RecentPlanProps> = ({ data }) => {
   return (
-    <Section p='2'>
+    <Flex direction={'column'} gap={'10px'}>
       <Text size='4' weight='medium'>
         {recentPlans.recentPlans}
       </Text>
-      <Flex>
-        <Swiper
-          spaceBetween={1}
-          slidesPerView={'auto'}
-          style={{ width: '100%', flexDirection: 'row' }} // Ensure Swiper takes full width
-        >
+      <Flex gap={'10px'}>
+        <Swiper spaceBetween={'10px'} slidesPerView={'auto'} style={{ width: '100%', flexDirection: 'row' }}>
           {data.map((item, index) => (
             <SwiperSlide
               key={index}
               style={{
-                display: 'flex', // Ensure slide content is centered
+                display: 'flex',
                 justifyContent: 'end',
-                width: 'auto', // Ensure slide takes width of its content
+                width: 'auto',
               }}
             >
               <RecentPlansCard
-                {...item}
                 key={index}
-                creationDate='تاریخ ساخت'
-                from='تهران'
-                to='شیراز'
-                travelDays={10}
-                userName='نام کاربر'
-                companionCount={8}
-                isPremium={true}
+                creationDate={item.creationDate}
+                from={item.from}
+                to={item.to}
+                travelDays={item.travelDays}
+                userName={item.userName}
+                companionCount={item.companionCount}
+                isPremium={item.isPremium}
               />
             </SwiperSlide>
           ))}
         </Swiper>
       </Flex>
-    </Section>
+    </Flex>
   );
 };
 

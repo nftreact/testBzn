@@ -1,8 +1,8 @@
 'use client';
 
-import { Avatar, Card, Inset, Text } from '@radix-ui/themes';
+import { Text } from '@radix-ui/themes';
 
-import { Box, Flex } from '@/libs/primitives';
+import { Flex } from '@/libs/primitives';
 
 interface CardProps {
   pictureUrl: string;
@@ -11,34 +11,20 @@ interface CardProps {
   address: string;
 }
 
-const RecentPointsCard: React.FC<CardProps> = ({ pictureUrl, title, rating, address }) => {
+const RecentPointsCard: React.FC<CardProps> = ({ title, rating, address }) => {
   return (
-    <Box>
-      <Card size='1'>
-        <Flex direction={'column'}>
-          <Inset clip='padding-box' side='right'>
-            <Avatar
-              size='8'
-              src={pictureUrl}
-              // src='https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?&w=256&h=256&q=70&crop=focalpoint&fp-x=0.5&fp-y=0.3&fp-z=1&fit=crop'
-              fallback='A'
-            />
-          </Inset>
-          <Flex direction={'column'}>
-            <Flex justify={'between'} mb={'2'}>
-              <Text weight={'bold'} size={'4'}>
-                {title}
-              </Text>
-
-              <Text>★{rating.toFixed(1)}</Text>
-            </Flex>
-            <Flex>
-              <Text>{address}</Text>
-            </Flex>
-          </Flex>
+    <Flex gap={'10px'} p={'10px'} style={{ border: '1px solid #000', borderRadius: '8px' }}>
+      <div style={{ width: '80px', height: '80px', borderRadius: '8px', border: '1px solid #000' }} />
+      <Flex direction={'column'} py={'12px'} justify={'between'} style={{ flex: 1 }}>
+        <Flex justify={'between'}>
+          <Text>{title}</Text>
+          <Text>★{rating.toFixed(1)}</Text>
         </Flex>
-      </Card>
-    </Box>
+        <Flex>
+          <Text>{address}</Text>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 };
 

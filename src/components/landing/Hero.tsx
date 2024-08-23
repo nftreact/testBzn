@@ -9,12 +9,12 @@ import { formattedDate } from '@/libs/utils/GetCurrentDay';
 
 const Hero = () => {
   return (
-    <Flex direction={{ initial: 'column', md: 'row' }} gap={'3'}>
+    <Flex direction={{ initial: 'column', md: 'row' }} align={{md:"center"}} justify={{ md: 'between' }} gap={'24px'}>
       <Flex direction={'column'} gap='5px'>
         <Text>{formattedDate}</Text>
         <Heading>{heroTypo.Title}</Heading>
       </Flex>
-      <FlexRoot direction='column' gap='20px' p='2'>
+      <FlexRoot direction='column' gap='20px' p='12px'>
         <Text align='right'>{callToActionTypo.Description}</Text>
         <Button variant='outline'>
           <Text align='right'>{callToActionTypo.makePlans}</Text>
@@ -27,6 +27,6 @@ const Hero = () => {
 export default Hero;
 
 const FlexRoot = styled(Flex)`
-  background-color: #d4d4d4;
   border-radius: 12px;
+  border: 1px solid #00000052;
 `;
