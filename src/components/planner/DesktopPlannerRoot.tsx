@@ -4,7 +4,9 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import { Flex, Text } from '@/libs/primitives';
 
+import Checkbox from './CheckboxGroup';
 import SelectCompnent from './Select';
+import SelectWrapper from './SelectWrapper';
 import TimeAndDate from './TimeAndDate';
 
 /**
@@ -78,27 +80,27 @@ const DesktopPlannerRoot = () => {
   const Type_of_tourist_place = [
     {
       key: 'طبیعت گردی',
-      value: 'طبیعت گردی',
+      value: 1,
       id: 1,
     },
     {
       key: 'هنرگردی',
-      value: 'هنرگردی',
+      value: 2,
       id: 2,
     },
     {
       key: 'تاریخ گردی',
-      value: 'تاریخ گردی',
+      value: 3,
       id: 3,
     },
     {
       key: 'گردشگری مذهبی',
-      value: 'گردشگری مذهبی',
+      value: 4,
       id: 4,
     },
     {
       key: 'شهرگردی',
-      value: 'شهرگردی',
+      value: 5,
       id: 5,
     },
   ];
@@ -107,6 +109,97 @@ const DesktopPlannerRoot = () => {
     { key: 'پربازدید', value: 'پربازدید', id: 1 },
     { key: 'معمولی', value: 'معمولی', id: 2 },
     { key: 'بکرو ناشناخته', value: 'بکرو ناشناخته', id: 3 },
+  ];
+
+  const Number_Of_Passengers = [
+    {
+      value: 'صفر',
+      key: '0',
+      id: 1,
+    },
+    {
+      value: '1 نفر',
+      key: '1',
+      id: 2,
+    },
+    {
+      value: '2 نفر',
+      key: '2',
+      id: 3,
+    },
+    {
+      value: '3 نفر',
+      key: '3',
+      id: 4,
+    },
+    {
+      value: '4 نفر',
+      key: '4',
+      id: 5,
+    },
+    {
+      value: '5 نفر',
+      key: '5',
+      id: 6,
+    },
+    {
+      value: '6 نفر',
+      key: '6',
+      id: 7,
+    },
+    {
+      value: '7 نفر',
+      key: '7',
+      id: 8,
+    },
+    {
+      value: '8 نفر',
+      key: '8',
+      id: 9,
+    },
+    {
+      value: '9 نفر',
+      key: '9',
+      id: 10,
+    },
+    {
+      value: '10 نفر',
+      key: '10',
+      id: 11,
+    },
+    {
+      value: '11 نفر',
+      key: '11',
+      id: 12,
+    },
+  ];
+
+  const Type_Of_Passengers = [
+    {
+      key: 'بانوان',
+      value: 1,
+      id: 1,
+    },
+    {
+      key: 'کودک و نوجوان',
+      value: 2,
+      id: 2,
+    },
+    {
+      key: 'سالمندان',
+      value: 3,
+      id: 3,
+    },
+    {
+      key: 'معلولین',
+      value: 4,
+      id: 4,
+    },
+    {
+      key: 'دارای بیماری خاص',
+      value: 5,
+      id: 5,
+    },
   ];
 
   /**
@@ -139,8 +232,12 @@ const DesktopPlannerRoot = () => {
       },
       means_of_travel: '',
       place_of_residence: '',
-      Type_of_tourist_place: '',
+      Type_of_tourist_place: [1],
       sortBy: '',
+      number_Of_Adult_Passengers: '',
+      number_Of_Child_Passengers: '',
+      number_Of_Minor_Passengers: '',
+      Type_Of_Passengers: [1],
     },
   });
   const { watch } = methods;
@@ -154,51 +251,73 @@ const DesktopPlannerRoot = () => {
   return (
     <Flex display={{ initial: 'none', md: 'flex' }} gap={'16px'} direction={'column'}>
       <FormProvider {...methods}>
-        <Flex gap={'10px'} direction={'column'}>
-          <Text>آدرس مبدا</Text>
-          <Flex gap={'20px'}>
+        {/* ADDRESS */}
+        <SelectWrapper title='آدرس مبدا'>
+          <Flex width={'100%'} gap={'20px'}>
             <SelectCompnent items={cityItem} placeholder={'استان'} store='origin[province]' />
             <SelectCompnent items={cityItem} placeholder={'شهر'} store='origin[city]' />
           </Flex>
-        </Flex>
-        <Flex gap={'10px'} direction={'column'}>
-          <Text>آدرس مبدا</Text>
-          <Flex gap={'20px'}>
+        </SelectWrapper>
+        <SelectWrapper title='آدرس مبدا'>
+          <Flex width={'100%'} gap={'20px'}>
             <SelectCompnent items={cityItem} placeholder={'استان'} store='destination[province]' />
             <SelectCompnent items={cityItem} placeholder={'شهر'} store='destination[city]' />
           </Flex>
-        </Flex>
+        </SelectWrapper>
+        {/* TIME AND DATE */}
         <TimeAndDate dateStore={'startTime[date]'} timeStore={'startTime[time]'} />
         <TimeAndDate dateStore={'endTime[date]'} timeStore={'endTime[time]'} />
-        <Flex gap={'10px'} direction={'column'}>
-          <Text>وسیله و اسکان</Text>
-          <Flex gap={'20px'}>
+        {/* MEANS OF TRAVEL */}
+        <SelectWrapper title='وسیله و اسکان'>
+          <Flex width={'100%'} gap={'20px'}>
             <SelectCompnent items={means_of_travelItems} placeholder={'وسیله سفر'} store='means_of_travel' />
             <SelectCompnent items={place_of_residence} placeholder={'محل اسکان'} store='place_of_residence' />
           </Flex>
-        </Flex>
-        <Flex gap={'10px'} direction={'column'}>
-          <Text>گردشگری</Text>
-          <Flex gap={'20px'}>
-            <SelectCompnent
-              items={Type_of_tourist_place}
-              placeholder={'نوع مکان گردشگری'}
-              store='Type_of_tourist_place'
-            />
-            <SelectCompnent items={SortByItem} placeholder={'نمایش بر اساس'} store='sortBy' />
+        </SelectWrapper>
+        {/* Type_of_tourist_place */}
+        <Flex width={'100%'} gap={'20px'}>
+          <Flex gap={'20px'} width={'50%'} direction={'column'}>
+            <Text style={{ paddingRight: '5px' }}>گردشگری</Text>
+            <Flex align={'center'}>
+              <Checkbox items={Type_of_tourist_place} store={'Type_of_tourist_place'} />
+            </Flex>
+          </Flex>
+          {/* Type_Of_Passengers */}
+          <Flex direction={'column'} gap={'20px'} width={'50%'}>
+            <Text style={{ paddingRight: '5px' }}>نوع مسافران</Text>
+            <Flex align={'center'}>
+              <Checkbox items={Type_Of_Passengers} store='Type_Of_Passengers' />
+            </Flex>
           </Flex>
         </Flex>
-        <Flex gap={'10px'} direction={'column'}>
-          <Text>مسافران</Text>
-          <Flex gap={'20px'}>
+        {/* number_Of_Adult_Passengers */}
+        <SelectWrapper title='مسافران'>
+          <Flex width={'100%'} gap={'20px'}>
             <SelectCompnent
-              items={Type_of_tourist_place}
-              placeholder={'نوع مکان گردشگری'}
-              store='Type_of_tourist_place'
+              items={Number_Of_Passengers}
+              placeholder={'تعداد مسافرین بزرگسال'}
+              store='number_Of_Adult_Passengers'
             />
-            <SelectCompnent items={SortByItem} placeholder={'نمایش بر اساس'} store='sortBy' />
+            <SelectCompnent
+              items={Number_Of_Passengers}
+              placeholder={'تعداد مسافرین کودک'}
+              store='number_Of_Child_Passengers'
+            />
           </Flex>
-        </Flex>
+          <Flex width={'100%'} gap={'20px'}>
+            <Flex width={'50%'}>
+              <SelectCompnent
+                items={Number_Of_Passengers}
+                placeholder={'تعداد مسافرین خردسال'}
+                store='number_Of_Minor_Passengers'
+              />
+            </Flex>
+            {/* sortby */}
+            <Flex width={'50%'}>
+              <SelectCompnent items={SortByItem} placeholder={'نمایش بر اساس'} store='sortBy' />
+            </Flex>
+          </Flex>
+        </SelectWrapper>
       </FormProvider>
     </Flex>
   );
