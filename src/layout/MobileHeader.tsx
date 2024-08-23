@@ -24,10 +24,15 @@ const MobileHeader = () => {
         <IconButton onClick={toggleDrawer} style={{ border: '1px solid #000' }} size={'3'}>
           m
         </IconButton>
+        <Drawer
+          style={{ borderTopLeftRadius: '8px', borderBottomLeftRadius: '8px' }}
+          open={isOpenMenu}
+          onClose={toggleDrawer}
+          direction='right'
+        >
+          <Menu />
+        </Drawer>
       </Flex>
-      <Drawer open={isOpenMenu} onClose={toggleDrawer} direction='right'>
-        <Menu />
-      </Drawer>
       <Link href={'/'}>
         <Text>logo</Text>
       </Link>

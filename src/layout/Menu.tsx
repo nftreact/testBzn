@@ -1,5 +1,7 @@
 'use client';
 
+import { Flex } from '@/libs/primitives';
+
 /**
  * props
  * _______________________________________________________________________________
@@ -25,7 +27,7 @@ const Menu = () => {
    * template
    * _______________________________________________________________________________
    */
-  return <section>menu</section>;
+  return <Flex p={'20px'}>menu</Flex>;
 };
 
 export default Menu;
