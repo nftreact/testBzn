@@ -31,6 +31,7 @@
     "react-modern-drawer": "1.4.0",
     "react-toastify": "10.0.5",
     "styled-components": "6.1.12",
+    "swiper": "^11.1.10",
     "yup": "1.4.0"
   },
   "devDependencies": {
@@ -38,6 +39,7 @@
     "@types/node": "20",
     "@types/react": "18",
     "@types/react-dom": "18",
+    "@types/react-icons": "^3.0.0",
     "@types/styled-components": "5.1.34",
     "@typescript-eslint/eslint-plugin": "8.2.0",
     "@typescript-eslint/parser": "8.2.0",
