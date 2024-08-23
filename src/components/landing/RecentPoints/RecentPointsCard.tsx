@@ -11,7 +11,7 @@ interface CardProps {
   address: string;
 }
 
-const RecentPointsCard: React.FC<CardProps> = ({ title, rating, address }) => {
+const RecentPointsCard: React.FC<CardProps> = ({ address, rating, title }) => {
   return (
     <Flex gap={'10px'} p={'10px'} style={{ border: '1px solid #000', borderRadius: '8px' }}>
       <div style={{ width: '80px', height: '80px', borderRadius: '8px', border: '1px solid #000' }} />
