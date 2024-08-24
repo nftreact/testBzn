@@ -74,6 +74,6 @@ const Root = styled(Flex)`
   }
 
   & .rt-Flex {
-    width: 48%;
+    width: 100%;
   }
 `;

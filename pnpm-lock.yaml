@@ -35,6 +35,9 @@ dependencies:
   react-hook-form:
     specifier: 7.52.2
     version: 7.52.2(react@18.0.0)
+  react-modern-drawer:
+    specifier: 1.4.0
+    version: 1.4.0(react@18.0.0)
   react-multi-date-picker:
     specifier: ^4.5.2
     version: 4.5.2(react-dom@18.0.0)(react@18.0.0)
@@ -50,6 +53,9 @@ dependencies:
   styled-components:
     specifier: 6.1.12
     version: 6.1.12(react-dom@18.0.0)(react@18.0.0)
+  swiper:
+    specifier: ^11.1.10
+    version: 11.1.10
   yup:
     specifier: 1.4.0
     version: 1.4.0
@@ -67,6 +73,9 @@ devDependencies:
   '@types/react-dom':
     specifier: '18'
     version: 18.0.0
+  '@types/react-icons':
+    specifier: ^3.0.0
+    version: 3.0.0(react@18.0.0)
   '@types/styled-components':
     specifier: 5.1.34
     version: 5.1.34
@@ -1716,6 +1725,15 @@ packages:
     resolution: {integrity: sha512-49897Y0UiCGmxZqpC8Blrf6meL8QUla6eb+BBhn69dTXlmuOlzkfr7HHY/O8J25e1lTUMs+YYxSlVDAaGHCOLg==}
     dependencies:
       '@types/react': 18.0.0
+
+  /@types/react-icons@3.0.0(react@18.0.0):
+    resolution: {integrity: sha512-Vefs6LkLqF61vfV7AiAqls+vpR94q67gunhMueDznG+msAkrYgRxl7gYjNem/kZ+as2l2mNChmF1jRZzzQQtMg==}
+    deprecated: This is a stub types definition. react-icons provides its own type definitions, so you do not need this installed.
+    dependencies:
+      react-icons: 5.3.0(react@18.0.0)
+    transitivePeerDependencies:
+      - react
+    dev: true
 
   /@types/react@18.0.0:
     resolution: {integrity: sha512-7+K7zEQYu7NzOwQGLR91KwWXXDzmTFODRVizJyIALf6RfLv2GDpqpknX64pvRVILXCpXi7O/pua8NGk44dLvJw==}
@@ -4318,9 +4336,25 @@ packages:
       react: 18.0.0
     dev: false
 
+  /react-icons@5.3.0(react@18.0.0):
+    resolution: {integrity: sha512-DnUk8aFbTyQPSkCfF8dbX6kQjXA9DktMeJqfjrg6cK9vwQVMxmcA3BfP4QoiztVmEHtwlTgLFsPuH2NskKT6eg==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.0.0
+    dev: true
+
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
+
+  /react-modern-drawer@1.4.0(react@18.0.0):
+    resolution: {integrity: sha512-5OkcUstqUdd/CNW9+BvLkzm36R2G54RFXWF2mWCH13cUsz5SNo9aB9KzPRbJp2LEVfRL/u+MgikOWRe7/6wKEQ==}
+    peerDependencies:
+      react: '>16.0.0'
+    dependencies:
+      react: 18.0.0
+    dev: false
 
   /react-multi-date-picker@4.5.2(react-dom@18.0.0)(react@18.0.0):
     resolution: {integrity: sha512-FgWjZB3Z6IA6XpcWiLPk85PwcRUhOiYhKK42o5k672gD/n2I6rzPfQ8bUrldOIiF/Z7FfOCdH7a6FeubzqteLg==}
@@ -4402,7 +4436,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /reflect.getprototypeof@1.0.6:
     resolution: {integrity: sha512-fmfw4XgoDke3kdI6h4xcUz1dG8uaiv5q9gcEwLS4Pnth2kxT+GZ7YehS1JTMGBQmtV7Y4GFGbs2re2NqhdozUg==}
@@ -4805,6 +4838,11 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
     dev: true
+
+  /swiper@11.1.10:
+    resolution: {integrity: sha512-pAVM6vCb6bumj2B9aSh67l3wP1j5YR8dPQM1YhQKMpnBc33vs+RpyVz6NZYZl/ZopCBSYbbWK5nvESwbmU0QXQ==}
+    engines: {node: '>= 4.7.0'}
+    dev: false
 
   /synckit@0.9.1:
     resolution: {integrity: sha512-7gr8p9TQP6RAHusBOSLs46F4564ZrjV8xFmw5zCmgmhGUcw2hxsShhJ6CEiHQMgPDwAQ1fWHPM0ypc4RMAig4A==}
