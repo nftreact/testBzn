@@ -35,14 +35,14 @@ const CheckboxGroup = ({ items, store }: Props) => {
         return (
           <Flex gap={'10px'}>
             {items.map(item => (
-              <Text as='label' size='2' key={item.id}>
+              <Text style={{ textWrap: 'nowrap' }} as='label' size='2' key={item.id}>
                 <Flex gap='2'>
                   <Checkbox
                     value={item.value}
                     checked={value.includes(item.value)}
                     onCheckedChange={() => handleCheckboxChange(item.value)}
                   />
-                  {item.key}
+                  <Text>{item.key}</Text>
                 </Flex>
               </Text>
             ))}
