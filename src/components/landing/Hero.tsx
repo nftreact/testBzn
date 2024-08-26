@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import { styled } from 'styled-components';
 
 import { callToActionTypo } from '@/constants/LandingPage/GeneratePlanCallToAction';
@@ -9,7 +11,12 @@ import { formattedDate } from '@/libs/utils/GetCurrentDay';
 
 const Hero = () => {
   return (
-    <Flex direction={{ initial: 'column', md: 'row' }} align={{md:"center"}} justify={{ md: 'between' }} gap={'24px'}>
+    <Flex
+      direction={{ initial: 'column', md: 'row' }}
+      align={{ md: 'center' }}
+      justify={{ md: 'between' }}
+      gap={'24px'}
+    >
       <Flex direction={'column'} gap='5px'>
         <Text>{formattedDate}</Text>
         <Heading>{heroTypo.Title}</Heading>
@@ -17,7 +24,9 @@ const Hero = () => {
       <FlexRoot direction='column' gap='20px' p='12px'>
         <Text align='right'>{callToActionTypo.Description}</Text>
         <Button variant='outline'>
-          <Text align='right'>{callToActionTypo.makePlans}</Text>
+          <Link href={'/planner'}>
+            <Text align='right'>{callToActionTypo.makePlans}</Text>
+          </Link>
         </Button>
       </FlexRoot>
     </Flex>
