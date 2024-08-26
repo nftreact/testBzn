@@ -1,4 +1,4 @@
-import { ReceiveCode, VerificationCode } from '@/components/auth/login';
+import { ReceiveCode, VerificationCode } from '@/components/auth';
 
 const LoginPage = ({ params }: { params: { slug: 'receiveCode' | 'verificationCode' } }) => {
   const renderElement = (key: 'receiveCode' | 'verificationCode') => {
