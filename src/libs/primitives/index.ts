@@ -7,3 +7,4 @@ export { default as Container } from './layout/Container';
 export { default as Box } from './layout/Box';
 export { default as Section } from './layout/Section';
 export { default as IconButton } from './components/IconButton';
+export { default as Accordion } from './components/Accordion';

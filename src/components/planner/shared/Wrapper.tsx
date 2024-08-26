@@ -9,12 +9,12 @@ import { Flex, Text } from '@/libs/primitives';
  * _______________________________________________________________________________
  */
 
-type SelectWrapperProps = {
+type WrapperProps = {
   children: ReactNode;
   title: string;
 };
 
-const SelectWrapper = ({ children, title }: SelectWrapperProps) => {
+const Wrapper = ({ children, title }: WrapperProps) => {
   /**
    * const and variables
    * _______________________________________________________________________________
@@ -35,14 +35,14 @@ const SelectWrapper = ({ children, title }: SelectWrapperProps) => {
    * _______________________________________________________________________________
    */
   return (
-    <Flex gap={'10px'} direction={'column'}>
+    <Flex width={'100%'} gap={'10px'} direction={'column'}>
       <Text style={{ paddingRight: '10px' }}>{title}</Text>
       {children}
     </Flex>
   );
 };
 
-export default SelectWrapper;
+export default Wrapper;
 
 /**
  * styled-component

@@ -14,9 +14,10 @@ type Props = {
     value: number;
     id: number;
   }[];
+  isRow?: boolean;
 };
 
-const CheckboxGroup = ({ items, store }: Props) => {
+const CheckboxGroup = ({ items, store, isRow = true }: Props) => {
   const { control } = useFormContext();
   return (
     <Controller
@@ -33,7 +34,7 @@ const CheckboxGroup = ({ items, store }: Props) => {
           }
         };
         return (
-          <Flex gap={'10px'}>
+          <Flex gap={'10px'} direction={isRow ? 'row' : 'column'}>
             {items.map(item => (
               <Text style={{ textWrap: 'nowrap' }} as='label' size='2' key={item.id}>
                 <Flex gap='2'>

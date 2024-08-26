@@ -46,6 +46,8 @@ const TimeAndDate = ({ dateStore, timeStore }: TimeAndDateProps) => {
       <Text style={{ paddingInline: '7px' }}>تاریخ و ساعت بازگشت</Text>
       <Flex gap={'20px'} justify={'between'}>
         <DatePicker
+          type='button'
+          inputClass='input-class'
           key={'date'}
           value={watch().endTime.date}
           placeholder='تاریخ'
@@ -58,6 +60,8 @@ const TimeAndDate = ({ dateStore, timeStore }: TimeAndDateProps) => {
           }}
         />
         <DatePicker
+          type='button'
+          inputClass='input-class'
           locale={persian_fa}
           placeholder='ساعت'
           onChange={(dateObject: DateObject | DateObject[] | any) => {
@@ -84,11 +88,24 @@ const Root = styled(Flex)`
   & .rmdp-input {
     padding-block: 9px;
     border-radius: 8px;
-    width: -webkit-fill-available;
     padding-right: 10px;
+    width: 89%;
+
+    @media (min-width: 768px) {
+      width: -webkit-fill-available;
+    }
   }
   & .rmdp-container {
     display: flex;
     flex: 1;
+  }
+
+  .input-class {
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    border: 1px solid #6a6a6a9b;
+    text-align: right;
+    background-color: #fff;
   }
 `;

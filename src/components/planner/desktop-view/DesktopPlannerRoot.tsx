@@ -13,12 +13,12 @@ import {
   Type_Of_Passengers,
   Type_of_tourist_place,
 } from '@/constants/planner/planner';
-import { Flex, Text } from '@/libs/primitives';
+import { Accordion, Flex, Text } from '@/libs/primitives';
 
-import Checkbox from './CheckboxGroup';
+import Checkbox from '../shared/CheckboxGroup';
+import TimeAndDate from '../shared/TimeAndDate';
+import Wrapper from '../shared/Wrapper';
 import SelectCompnent from './Select';
-import SelectWrapper from './SelectWrapper';
-import TimeAndDate from './TimeAndDate';
 
 /**
  * props
@@ -78,31 +78,35 @@ const PlannerRoot = () => {
    * _______________________________________________________________________________
    */
   return (
-    <Flex gap={'16px'} direction={'column'}>
+    <Flex display={{ initial: 'none', md: 'flex' }} gap={'16px'} direction={'column'}>
       <FormProvider {...methods}>
         {/* ADDRESS */}
-        <SelectWrapper title='آدرس مبدا'>
+        <Wrapper title='آدرس مبدا'>
           <Container>
             <SelectCompnent items={cityItem} placeholder={'استان'} store='origin[province]' />
             <SelectCompnent items={cityItem} placeholder={'شهر'} store='origin[city]' />
           </Container>
-        </SelectWrapper>
-        <SelectWrapper title='آدرس مبدا'>
+        </Wrapper>
+
+        <Wrapper title='آدرس مبدا'>
           <Container>
             <SelectCompnent items={cityItem} placeholder={'استان'} store='destination[province]' />
             <SelectCompnent items={cityItem} placeholder={'شهر'} store='destination[city]' />
           </Container>
-        </SelectWrapper>
+        </Wrapper>
+
         {/* TIME AND DATE */}
         <TimeAndDate dateStore={'startTime[date]'} timeStore={'startTime[time]'} />
         <TimeAndDate dateStore={'endTime[date]'} timeStore={'endTime[time]'} />
+
         {/* MEANS OF TRAVEL */}
-        <SelectWrapper title='وسیله و اسکان'>
+        <Wrapper title='وسیله و اسکان'>
           <Container>
             <SelectCompnent items={means_of_travelItems} placeholder={'وسیله سفر'} store='means_of_travel' />
             <SelectCompnent items={place_of_residence} placeholder={'محل اسکان'} store='place_of_residence' />
           </Container>
-        </SelectWrapper>
+        </Wrapper>
+
         {/* Type_of_tourist_place */}
         <Container display={{ initial: 'none', md: 'flex' }}>
           <Flex gap={'20px'} width={'50%'} direction={'column'}>
@@ -119,8 +123,15 @@ const PlannerRoot = () => {
             </Flex>
           </Flex>
         </Container>
+
+        <Flex display={{ initial: 'flex', md: 'none' }}>
+          <Accordion triggerText='نوع مسافران'>
+            <Checkbox isRow={false} items={Type_Of_Passengers} store='Type_Of_Passengers' />
+          </Accordion>
+        </Flex>
+
         {/* number_Of_Adult_Passengers */}
-        <SelectWrapper title='مسافران'>
+        <Wrapper title='مسافران'>
           <Container>
             <SelectCompnent
               items={Number_Of_Passengers}
@@ -133,6 +144,7 @@ const PlannerRoot = () => {
               store='number_Of_Child_Passengers'
             />
           </Container>
+
           <Container>
             <Flex width={{ initial: '100%', md: '50%' }}>
               <SelectCompnent
@@ -146,7 +158,7 @@ const PlannerRoot = () => {
               <SelectCompnent items={SortByItem} placeholder={'نمایش بر اساس'} store='sortBy' />
             </Flex>
           </Container>
-        </SelectWrapper>
+        </Wrapper>
       </FormProvider>
     </Flex>
   );
@@ -162,9 +174,4 @@ export default PlannerRoot;
 const Container = styled(Flex)`
   width: 100%;
   gap: 20px;
-  flex-direction: column;
-
-  @media (min-width: 1024px) {
-    flex-direction: row;
-  }
 `;

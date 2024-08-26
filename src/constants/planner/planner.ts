@@ -1,19 +1,13 @@
 export const cityItem = [
   {
     key: 'تبریز',
-    value: 'آذربايجان شرقی - تبریز',
+    value: 'تبریز',
     id: 1,
-    places_count: 81,
-    province_id: 1,
-    trip_value: 8,
   },
   {
-    key: 'تبریز',
-    value: 'آذربايجان شرقی - تبریز',
+    key: 'تهران',
+    value: 'تهران',
     id: 2,
-    places_count: 81,
-    province_id: 1,
-    trip_value: 8,
   },
 ];
 
