@@ -38,6 +38,9 @@ const Root = styled.header`
     padding: 16px 20px;
     justify-content: space-between;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 4px;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
   }
 
   button {
