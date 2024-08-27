@@ -4,6 +4,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import styled from 'styled-components';
 
+import { defaultFormValues, FormData } from '@/components/planner/type';
 import {
   cityItem,
   means_of_travelItems,
@@ -13,10 +14,10 @@ import {
   Type_Of_Passengers,
   Type_of_tourist_place,
 } from '@/constants/planner/planner';
-import { Accordion, Flex, Text } from '@/libs/primitives';
+import { Accordion, Flex, Grid, Text } from '@/libs/primitives';
+import { DatePicker, TimePicker } from '@/libs/shared';
 
 import Checkbox from '../shared/CheckboxGroup';
-import TimeAndDate from '../shared/TimeAndDate';
 import Wrapper from '../shared/Wrapper';
 import SelectCompnent from './Select';
 
@@ -40,38 +41,9 @@ const PlannerRoot = () => {
    * hooks and methods
    * _______________________________________________________________________________
    */
-
-  const methods = useForm({
-    defaultValues: {
-      origin: {
-        city: '',
-        province: '',
-      },
-      destination: {
-        city: '',
-        province: '',
-      },
-      startTime: {
-        time: '',
-        date: '',
-      },
-      endTime: {
-        time: '',
-        date: '',
-      },
-      means_of_travel: '',
-      place_of_residence: '',
-      Type_of_tourist_place: [1],
-      sortBy: '',
-      number_Of_Adult_Passengers: '',
-      number_Of_Child_Passengers: '',
-      number_Of_Minor_Passengers: '',
-      Type_Of_Passengers: [1],
-    },
+  const methods = useForm<FormData>({
+    defaultValues: defaultFormValues,
   });
-  const { watch } = methods;
-
-  console.log(watch(), 'datakhjblkjfdsbgksfdg');
 
   /**
    * template
@@ -96,8 +68,22 @@ const PlannerRoot = () => {
         </Wrapper>
 
         {/* TIME AND DATE */}
-        <TimeAndDate dateStore={'startTime[date]'} timeStore={'startTime[time]'} />
-        <TimeAndDate dateStore={'endTime[date]'} timeStore={'endTime[time]'} />
+        <Flex direction={'column'} gap={'5px'}>
+          <Text style={{ paddingRight: '10px' }}>تاریخ و ساعت حرکت</Text>
+          <Grid columns={'2'} gap={'10px'}>
+            <DatePicker placeholder='تاریخ' name='startTime[date]' inputMode='none' />
+            <TimePicker placeholder='ساعت' name='startTime[time]' inputMode='none' />
+          </Grid>
+        </Flex>
+        <Flex direction={'column'} gap={'5px'}>
+          <Text style={{ paddingRight: '10px' }}>تاریخ و ساعت بازگشت</Text>
+          <Grid columns={'2'} gap={'10px'}>
+            <DatePicker placeholder='تاریخ' name='endTime[date]' inputMode='none' />
+            <TimePicker placeholder='ساعت' name='endTime[time]' inputMode='none' />
+          </Grid>
+        </Flex>
+        {/* <TimeAndDate dateStore={'startTime[date]'} timeStore={'startTime[time]'} />
+        <TimeAndDate dateStore={'endTime[date]'} timeStore={'endTime[time]'} /> */}
 
         {/* MEANS OF TRAVEL */}
         <Wrapper title='وسیله و اسکان'>

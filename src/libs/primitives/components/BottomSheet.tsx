@@ -7,11 +7,11 @@ import { styled } from 'styled-components';
 
 export type BottomSheetProps = {
   isOpen: boolean;
-  onClose?: () => void;
+  onClose: () => void;
   children: React.ReactNode;
 };
 
-const BottomSheet: React.FC<BottomSheetProps> = ({ isOpen, children }) => {
+const BottomSheet: React.FC<BottomSheetProps> = ({ isOpen, children, onClose }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -23,7 +23,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({ isOpen, children }) => {
 
   const handleClose = (event: React.MouseEvent) => {
     event.preventDefault();
-    // onClose && onClose();
+    onClose();
   };
 
   const bottomSheetContent = () => (

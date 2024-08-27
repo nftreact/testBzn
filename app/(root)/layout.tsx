@@ -28,7 +28,7 @@ export default function Layout({
       <body className={inter.className}>
         <ReactQueryProvider>
           <StyledComponentsRegistry>
-            <Theme radius='large' scaling='100%'>
+            <Theme accentColor='gray' grayColor='gray' radius='large' scaling='100%'>
               <Suspense>
                 <RootLayout>{children}</RootLayout>
               </Suspense>

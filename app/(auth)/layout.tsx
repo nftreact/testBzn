@@ -20,7 +20,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <body>
         <ReactQueryProvider>
           <StyledComponentsRegistry>
-            <Theme radius='large' scaling='100%'>
+            <Theme accentColor='gray' grayColor='gray' radius='large' scaling='100%'>
               <Suspense>{children}</Suspense>
             </Theme>
           </StyledComponentsRegistry>

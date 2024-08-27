@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
+import { defaultFormValues, FormData } from '@/components/planner/type';
 import {
   cityItem,
   means_of_travelItems,
@@ -12,15 +13,14 @@ import {
   Type_Of_Passengers,
   Type_of_tourist_place,
 } from '@/constants/planner/planner';
-import { Accordion, Flex } from '@/libs/primitives';
+import { Accordion, Flex, Grid, Text } from '@/libs/primitives';
 import BottomSheet from '@/libs/primitives/components/BottomSheet';
+import { BottomsheetListItems, DatePicker, TimePicker } from '@/libs/shared';
+import CallToActionBottomSheet from '@/libs/shared/CallToActionBottomSheet';
 
 import Checkbox from '../shared/CheckboxGroup';
-import TimeAndDate from '../shared/TimeAndDate';
 import Wrapper from '../shared/Wrapper';
 import BottomSheetWrapper from './BottomSheetWrapper';
-import Card from './Card';
-import ListItem from './ListItem';
 
 /**
  * props
@@ -28,8 +28,10 @@ import ListItem from './ListItem';
  */
 
 type key =
-  | 'city'
-  | 'province'
+  | 'origin[province]'
+  | 'origin[city]'
+  | 'destination[province]'
+  | 'destination[city]'
   | 'means_of_travel'
   | 'place_of_residence'
   | 'Type_of_tourist_place'
@@ -61,56 +63,41 @@ const MobilePlannerRoot = () => {
    * _______________________________________________________________________________
    */
 
-  const methods = useForm({
-    defaultValues: {
-      origin: {
-        city: '',
-        province: '',
-      },
-      destination: {
-        city: '',
-        province: '',
-      },
-      startTime: {
-        time: '',
-        date: '',
-      },
-      endTime: {
-        time: '',
-        date: '',
-      },
-      means_of_travel: '',
-      place_of_residence: '',
-      Type_of_tourist_place: [1],
-      sortBy: '',
-      number_Of_Adult_Passengers: '',
-      number_Of_Child_Passengers: '',
-      number_Of_Minor_Passengers: '',
-      Type_Of_Passengers: [1],
-    },
+  const methods = useForm<FormData>({
+    defaultValues: defaultFormValues,
   });
-  const { watch } = methods;
-  console.log(watch(), 'datakhjblkjfdsbgksfdg');
+
   const handleClick = (key: key) => {
     setState({
       isOpen: true,
       key,
     });
   };
-  console.log(state, 'state');
 
   const renderElement = (key: key) => {
     switch (key) {
-      case 'province':
+      case 'origin[province]':
         return (
           <BottomSheetWrapper title='استان'>
-            <ListItem items={cityItem} store='' />
+            <BottomsheetListItems items={cityItem} store='origin[province]' />
           </BottomSheetWrapper>
         );
-      case 'city':
+      case 'origin[city]':
         return (
           <BottomSheetWrapper title='شهر'>
-            <ListItem items={cityItem} store='' />
+            <BottomsheetListItems items={cityItem} store='origin[city]' />
+          </BottomSheetWrapper>
+        );
+      case 'destination[province]':
+        return (
+          <BottomSheetWrapper title='استان'>
+            <BottomsheetListItems items={cityItem} store='destination[province]' />
+          </BottomSheetWrapper>
+        );
+      case 'destination[city]':
+        return (
+          <BottomSheetWrapper title='شهر'>
+            <BottomsheetListItems items={cityItem} store='destination[city]' />
           </BottomSheetWrapper>
         );
       case 'Type_Of_Passengers':
@@ -128,38 +115,38 @@ const MobilePlannerRoot = () => {
       case 'place_of_residence':
         return (
           <BottomSheetWrapper title='محل اسکان'>
-            <ListItem items={place_of_residence} store='' />
+            <BottomsheetListItems items={place_of_residence} store='place_of_residence' />
           </BottomSheetWrapper>
         );
       case 'means_of_travel':
         return (
           <BottomSheetWrapper title='وسیله سفر'>
-            <ListItem items={means_of_travelItems} store='' />
+            <BottomsheetListItems items={means_of_travelItems} store='place_of_residence' />
           </BottomSheetWrapper>
         );
       case 'number_Of_Adult_Passengers':
         return (
           <BottomSheetWrapper title='تعداد مسافرین بزرگسال'>
-            <ListItem items={Number_Of_Passengers} store='' />
+            <BottomsheetListItems items={Number_Of_Passengers} store='number_Of_Adult_Passengers' />
           </BottomSheetWrapper>
         );
 
       case 'number_Of_Child_Passengers':
         return (
           <BottomSheetWrapper title='تعداد مسافرین کودک'>
-            <ListItem items={Number_Of_Passengers} store='' />
+            <BottomsheetListItems items={Number_Of_Passengers} store='number_Of_Child_Passengers' />
           </BottomSheetWrapper>
         );
       case 'number_Of_Minor_Passengers':
         return (
           <BottomSheetWrapper title='تعداد مسافرین خردسال'>
-            <ListItem items={Number_Of_Passengers} store='' />
+            <BottomsheetListItems items={Number_Of_Passengers} store='number_Of_Minor_Passengers' />
           </BottomSheetWrapper>
         );
       case 'sortBy':
         return (
           <BottomSheetWrapper title='محبوبیت نقطه'>
-            <ListItem items={SortByItem} store='' />
+            <BottomsheetListItems items={SortByItem} store='sortBy' />
           </BottomSheetWrapper>
         );
     }
@@ -171,40 +158,65 @@ const MobilePlannerRoot = () => {
    */
   return (
     <FormProvider {...methods}>
-      <Flex direction={'column'} gap={'40px'} display={{ initial: 'flex', md: 'none' }}>
+      <Flex direction={'column'} gap={'20px'} display={{ initial: 'flex', md: 'none' }}>
         {/* ADDRESS */}
         <Wrapper title='آدرس مبدا'>
-          <Card value='استان' onClick={() => handleClick('province')} />
-          <Card value='شهر' onClick={() => handleClick('city')} />
+          <CallToActionBottomSheet value='استان' onClick={() => handleClick('origin[province]')} />
+          <CallToActionBottomSheet value='شهر' onClick={() => handleClick('origin[city]')} />
         </Wrapper>
 
         <Wrapper title='آدرس مقصد'>
-          <Card value='استان' onClick={() => handleClick('province')} />
-          <Card value='شهر' onClick={() => handleClick('city')} />
+          <CallToActionBottomSheet value='استان' onClick={() => handleClick('destination[province]')} />
+          <CallToActionBottomSheet value='شهر' onClick={() => handleClick('destination[city]')} />
         </Wrapper>
 
         {/* TIME AND DATE */}
-        <Flex direction={'column'} gap={'20px'}>
-          <TimeAndDate dateStore={'startTime[date]'} timeStore={'startTime[time]'} />
-          <TimeAndDate dateStore={'endTime[date]'} timeStore={'endTime[time]'} />
+        <Flex direction={'column'} gap={'5px'}>
+          <Text style={{ paddingRight: '10px' }}>تاریخ و ساعت حرکت</Text>
+          <Grid columns={'2'} gap={'10px'}>
+            <DatePicker placeholder='تاریخ' name='startTime[date]' inputMode='none' />
+            <TimePicker placeholder='ساعت' name='startTime[time]' inputMode='none' />
+          </Grid>
+        </Flex>
+        <Flex direction={'column'} gap={'5px'}>
+          <Text style={{ paddingRight: '10px' }}>تاریخ و ساعت بازگشت</Text>
+          <Grid columns={'2'} gap={'10px'}>
+            <DatePicker placeholder='تاریخ' name='endTime[date]' inputMode='none' />
+            <TimePicker placeholder='ساعت' name='endTime[time]' inputMode='none' />
+          </Grid>
         </Flex>
 
         {/* MORE */}
         <Accordion triggerText='تنظیمات بیشتر'>
           <Flex direction={'column'} gap={'30px'}>
             <Wrapper title='وسیله و اسکان'>
-              <Card value='محل اسکان' onClick={() => handleClick('place_of_residence')} />
-              <Card value='وسیله سفر' onClick={() => handleClick('means_of_travel')} />
+              <CallToActionBottomSheet value='محل اسکان' onClick={() => handleClick('place_of_residence')} />
+              <CallToActionBottomSheet value='وسیله سفر' onClick={() => handleClick('means_of_travel')} />
             </Wrapper>
             <Wrapper title='گردشگری'>
-              <Card value='نوع مکان گردشگری' onClick={() => handleClick('Type_of_tourist_place')} />
-              <Card value='محبوبیت نقطه' onClick={() => handleClick('sortBy')} />
+              <CallToActionBottomSheet
+                value='نوع مکان گردشگری'
+                onClick={() => handleClick('Type_of_tourist_place')}
+              />
+              <CallToActionBottomSheet value='محبوبیت نقطه' onClick={() => handleClick('sortBy')} />
             </Wrapper>
             <Wrapper title='مسافران'>
-              <Card value='تعداد مسافرین بزرگسال' onClick={() => handleClick('number_Of_Adult_Passengers')} />
-              <Card value='تعداد مسافرین کودک' onClick={() => handleClick('number_Of_Child_Passengers')} />
-              <Card value='تعداد مسافرین خردسال' onClick={() => handleClick('number_Of_Minor_Passengers')} />
-              <Card value='نوع مسافران' onClick={() => handleClick('Type_Of_Passengers')} />
+              <CallToActionBottomSheet
+                value='تعداد مسافرین بزرگسال'
+                onClick={() => handleClick('number_Of_Adult_Passengers')}
+              />
+              <CallToActionBottomSheet
+                value='تعداد مسافرین کودک'
+                onClick={() => handleClick('number_Of_Child_Passengers')}
+              />
+              <CallToActionBottomSheet
+                value='تعداد مسافرین خردسال'
+                onClick={() => handleClick('number_Of_Minor_Passengers')}
+              />
+              <CallToActionBottomSheet
+                value='نوع مسافران'
+                onClick={() => handleClick('Type_Of_Passengers')}
+              />
             </Wrapper>
           </Flex>
         </Accordion>

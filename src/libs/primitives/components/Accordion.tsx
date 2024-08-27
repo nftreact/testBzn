@@ -2,11 +2,12 @@
 
 import { useState } from 'react';
 
+import { CaretDownIcon } from '@radix-ui/react-icons';
 import { Button } from '@radix-ui/themes';
 import { motion, Variants } from 'framer-motion';
 import styled from 'styled-components';
 
-import { Flex, Text } from '../index';
+import { Flex } from '../index';
 
 interface AccordionProps {
   triggerText: string;
@@ -28,9 +29,9 @@ const Accordion: React.FC<AccordionProps> = ({ triggerText, children }) => {
   return (
     <div>
       <Trigger variant='outline' onClick={toggleAccordion}>
-        <Flex width={'100%'} justify={'between'}>
+        <Flex width={'100%'} justify={'between'} align={'center'}>
           {triggerText}
-          <Text>.</Text>
+          <CaretDownIcon style={{ scale: 1.6 }} />
         </Flex>
       </Trigger>
       <motion.div
@@ -41,7 +42,7 @@ const Accordion: React.FC<AccordionProps> = ({ triggerText, children }) => {
         style={{ overflow: 'hidden' }}
         layout // Enable layout animation
       >
-        <div style={{ padding: '10px' }}>{children}</div>
+        <div style={{ paddingBlock: '20px' }}>{children}</div>
       </motion.div>
     </div>
   );
