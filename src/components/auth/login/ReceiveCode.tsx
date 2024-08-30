@@ -63,6 +63,7 @@ const ReceiveCode = () => {
 
   const onSubmit = (data: LoginFormInputs) => {
     console.log(data);
+
     push('/auth/login/verificationCode');
   };
 
