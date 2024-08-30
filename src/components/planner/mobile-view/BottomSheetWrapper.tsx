@@ -35,8 +35,8 @@ const BottomSheetWrapper = ({ title, children }: BottomSheetWrapperProps) => {
    * _______________________________________________________________________________
    */
   return (
-    <Flex direction={'column'} gap={'20px'} px='30px' py={'30px'}>
-      <Heading style={{ fontSize: '30px' }} as='h1'>
+    <Flex direction={'column'} gap={'32px'} p={'16px'}>
+      <Heading style={{ fontSize: '20px', color: '#1e1f2475' }} as='h1'>
         {title}
       </Heading>
       {children}

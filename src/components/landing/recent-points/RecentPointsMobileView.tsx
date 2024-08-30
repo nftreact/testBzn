@@ -1,4 +1,4 @@
-import { Flex } from '@/libs/primitives';
+import { Flex, Text } from '@/libs/primitives';
 
 import { RecentPointCard } from '../types';
 import RecentPointsCard from './RecentPointsCard';
@@ -8,7 +8,8 @@ interface RecentPointProps {
 }
 const RecentPoints: React.FC<RecentPointProps> = ({ data }) => {
   return (
-    <Flex direction='column' gap='10px'>
+    <Flex direction='column' gap='8px' display={{ initial: 'flex', md: 'none' }}>
+      <Text size={'3'}>مشاهده های اخیر</Text>
       {data.map((item, index) => (
         <RecentPointsCard
           key={index}

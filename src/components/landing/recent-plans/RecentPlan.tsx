@@ -15,22 +15,20 @@ interface RecentPlanProps {
 
 const RecentPlan: React.FC<RecentPlanProps> = ({ data }) => {
   return (
-    <Flex direction={'column'} gap={'10px'}>
-      <Text size='4' weight='medium'>
-        {recentPlans.recentPlans}
-      </Text>
+    <Flex direction={'column'}>
+      <Text size={'3'}>{recentPlans.recentPlans}</Text>
       <Flex gap={'10px'}>
-        <Swiper spaceBetween={'10px'} slidesPerView={'auto'} style={{ width: '100%', flexDirection: 'row' }}>
+        <Swiper spaceBetween={'16px'} slidesPerView={'auto'} style={{ width: '100%', flexDirection: 'row' }}>
           {data.map((item, index) => (
             <SwiperSlide
               key={index}
               style={{
-                display: 'flex',
-                justifyContent: 'end',
-                width: 'auto',
+                width: 'fit-content',
+                marginBlock: '10px',
               }}
             >
               <RecentPlansCard
+                image={item.image}
                 key={index}
                 creationDate={item.creationDate}
                 from={item.from}

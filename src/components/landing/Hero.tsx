@@ -12,6 +12,10 @@ import { formattedDate } from '@/libs/utils/GetCurrentDay';
 const Hero = () => {
   return (
     <Flex
+      width={'100%'}
+      m='auto'
+      height={{ initial: 'max-content', md: '480px' }}
+      maxWidth={{ initial: '100%', md: '1000px' }}
       direction={{ initial: 'column', md: 'row' }}
       align={{ md: 'center' }}
       justify={{ md: 'between' }}
@@ -21,13 +25,13 @@ const Hero = () => {
         <Text>{formattedDate}</Text>
         <Heading>{heroTypo.Title}</Heading>
       </Flex>
-      <FlexRoot direction='column' gap='20px' p='12px'>
+      <FlexRoot direction='column' gap='20px' p='12px' maxWidth={{ md: '480px' }}>
         <Text align='right'>{callToActionTypo.Description}</Text>
-        <Button variant='outline'>
+        <ButtonStyle size={'4'} variant='soft'>
           <Link href={'/planner'}>
             <Text align='right'>{callToActionTypo.makePlans}</Text>
           </Link>
-        </Button>
+        </ButtonStyle>
       </FlexRoot>
     </Flex>
   );
@@ -36,6 +40,17 @@ const Hero = () => {
 export default Hero;
 
 const FlexRoot = styled(Flex)`
-  border-radius: 12px;
-  border: 1px solid #00000052;
+  border-radius: 8px;
+  border: 1px solid #d8d9e0;
+`;
+
+const ButtonStyle = styled(Button)`
+  &.rt-Button:where(.rt-r-size-4):where(:not(.rt-variant-ghost)) {
+    border-radius: 12px;
+    background-color: #009c9b;
+    font-size: 14px;
+    padding: 11px 12px;
+    max-height: 40px;
+    color: #fcfcfd;
+  }
 `;

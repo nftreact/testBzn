@@ -8,6 +8,7 @@ import '@radix-ui/themes/styles.css';
 
 import RootLayout from '@/layout/RootLayout';
 import { ReactQueryProvider, StyledComponentsRegistry } from '@/libs/providers';
+import { Yekan } from '@/theme/font.config';
 import '@/theme/globals.css';
 import '@/theme/theme.config.css';
 
@@ -24,11 +25,11 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='fa' dir='rtl'>
+    <html className={Yekan.variable} lang='fa' dir='rtl'>
       <body className={inter.className}>
         <ReactQueryProvider>
           <StyledComponentsRegistry>
-            <Theme radius='large' scaling='100%'>
+            <Theme accentColor='gray' grayColor='gray' radius='large' scaling='100%'>
               <Suspense>
                 <RootLayout>{children}</RootLayout>
               </Suspense>

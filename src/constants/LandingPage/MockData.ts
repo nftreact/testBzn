@@ -1,5 +1,9 @@
+import RecentPlanImage from '../../../public/image/avatar.png';
+import BannerImage from '../../../public/image/landing-banner.png';
+
 export const recentPlansData = [
   {
+    image: RecentPlanImage,
     userName: 'نام کاربر',
     creationDate: 'تاریخ ساخت',
     from: 'تهران',
@@ -9,6 +13,7 @@ export const recentPlansData = [
     isPremium: true,
   },
   {
+    image: RecentPlanImage,
     userName: 'نام کاربر',
     creationDate: 'تاریخ ساخت',
     from: 'تهران',
@@ -18,6 +23,7 @@ export const recentPlansData = [
     isPremium: true,
   },
   {
+    image: RecentPlanImage,
     userName: 'نام کاربر',
     creationDate: 'تاریخ ساخت',
     from: 'تهران',
@@ -27,6 +33,7 @@ export const recentPlansData = [
     isPremium: true,
   },
   {
+    image: RecentPlanImage,
     userName: 'نام کاربر',
     creationDate: 'تاریخ ساخت',
     from: 'تهران',
@@ -36,6 +43,7 @@ export const recentPlansData = [
     isPremium: true,
   },
   {
+    image: RecentPlanImage,
     userName: 'نام کاربر',
     creationDate: 'تاریخ ساخت',
     from: 'تهران',
@@ -45,6 +53,7 @@ export const recentPlansData = [
     isPremium: true,
   },
   {
+    image: RecentPlanImage,
     userName: 'نام کاربر',
     creationDate: 'تاریخ ساخت',
     from: 'تهران',
@@ -54,6 +63,7 @@ export const recentPlansData = [
     isPremium: true,
   },
   {
+    image: RecentPlanImage,
     userName: 'نام کاربر',
     creationDate: 'تاریخ ساخت',
     from: 'تهران',
@@ -63,6 +73,7 @@ export const recentPlansData = [
     isPremium: true,
   },
   {
+    image: RecentPlanImage,
     userName: 'نام کاربر',
     creationDate: 'تاریخ ساخت',
     from: 'تهران',
@@ -72,6 +83,7 @@ export const recentPlansData = [
     isPremium: true,
   },
   {
+    image: RecentPlanImage,
     userName: 'نام کاربر',
     creationDate: 'تاریخ ساخت',
     from: 'تهران',
@@ -84,21 +96,100 @@ export const recentPlansData = [
 
 export const recentPointsData = [
   {
-    pictureUrl: 'https://www.conventionalcommits.org/img/git-flow--welcome.png',
+    pictureUrl: BannerImage,
     title: 'نام و عنوان',
     rating: 4.5,
     address: 'تهران، خیابان اول، محله دوم، کوچه سوم، پلاک چهارم',
   },
   {
-    pictureUrl: 'https://www.conventionalcommits.org/img/git-flow--welcome.png',
+    pictureUrl: BannerImage,
     title: 'نام و عنوان',
     rating: 4.5,
     address: 'تهران، خیابان اول، محله دوم، کوچه سوم، پلاک چهارم',
   },
   {
-    pictureUrl: 'https://www.conventionalcommits.org/img/git-flow--welcome.png',
+    pictureUrl: BannerImage,
     title: 'نام و عنوان',
     rating: 4.5,
     address: 'تهران، خیابان اول، محله دوم، کوچه سوم، پلاک چهارم',
+  },
+  {
+    pictureUrl: BannerImage,
+    title: 'نام و عنوان',
+    rating: 4.5,
+    address: 'تهران، خیابان اول، محله دوم، کوچه سوم، پلاک چهارم',
+  },
+];
+
+export const recentTourData = [
+  {
+    image: RecentPlanImage,
+    userName: 'نام کاربر',
+    from: 'تهران',
+    to: 'شیراز',
+    travelDays: 10,
+    companionCount: 8,
+    isPremium: true,
+    badge: ['طبیعت گردی', 'تاریخ گردی'],
+  },
+  {
+    image: RecentPlanImage,
+    userName: 'نام کاربر',
+    from: 'تهران',
+    to: 'شیراز',
+    travelDays: 10,
+    companionCount: 8,
+    isPremium: true,
+    badge: ['طبیعت گردی', 'تاریخ گردی'],
+  },
+  {
+    image: RecentPlanImage,
+    userName: 'نام کاربر',
+    from: 'تهران',
+    to: 'شیراز',
+    travelDays: 10,
+    companionCount: 8,
+    isPremium: true,
+    badge: ['طبیعت گردی', 'تاریخ گردی'],
+  },
+  {
+    image: RecentPlanImage,
+    userName: 'نام کاربر',
+    from: 'تهران',
+    to: 'شیراز',
+    travelDays: 10,
+    companionCount: 8,
+    isPremium: true,
+    badge: ['طبیعت گردی', 'تاریخ گردی'],
+  },
+  {
+    image: RecentPlanImage,
+    userName: 'نام کاربر',
+    from: 'تهران',
+    to: 'شیراز',
+    travelDays: 10,
+    companionCount: 8,
+    isPremium: true,
+    badge: ['طبیعت گردی', 'تاریخ گردی'],
+  },
+  {
+    image: RecentPlanImage,
+    userName: 'نام کاربر',
+    from: 'تهران',
+    to: 'شیراز',
+    travelDays: 10,
+    companionCount: 8,
+    isPremium: true,
+    badge: ['طبیعت گردی', 'تاریخ گردی'],
+  },
+  {
+    image: RecentPlanImage,
+    userName: 'نام کاربر',
+    from: 'تهران',
+    to: 'شیراز',
+    travelDays: 10,
+    companionCount: 8,
+    isPremium: true,
+    badge: ['طبیعت گردی', 'تاریخ گردی'],
   },
 ];

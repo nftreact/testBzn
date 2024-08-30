@@ -1,0 +1,5 @@
+.radix-themes {
+  --default-font-family: var(--yekan-font) !important;
+  font-family: var(--yekan-font) !important;
+  --color-brand: #009c9b;
+}

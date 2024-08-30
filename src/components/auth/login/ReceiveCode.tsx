@@ -3,15 +3,16 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { TextField } from '@radix-ui/themes';
 import styled from 'styled-components';
 import * as yup from 'yup';
 
-import { Button, Flex, Heading, Text } from '@/libs/primitives';
+import { Button, Flex, Text, TextField } from '@/libs/primitives';
+
+import AuthLogo from '../../../../public/image/auth-log.png';
 
 /**
  * yup validation
@@ -61,9 +62,8 @@ const ReceiveCode = () => {
   });
 
   const onSubmit = (data: LoginFormInputs) => {
-    console.log('Form Data:', data);
+    console.log(data);
     push('/auth/login/verificationCode');
-    // Handle form submission, e.g., send data to the server
   };
 
   /**
@@ -73,7 +73,7 @@ const ReceiveCode = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Flex width={'100%'} direction={'column'} height={'100vh'}>
+      <Flex width={'100%'} direction={'column'} minHeight={'90vh'}>
         <Container
           p={'24px 16px'}
           width={{ initial: '100%' }}
@@ -81,41 +81,28 @@ const ReceiveCode = () => {
           m='auto'
           justify={'between'}
           direction={'column'}
-          gap={'50px'}
+          gap={'40px'}
         >
-          <Heading m={'auto'}>logo</Heading>
-          <Flex direction={'column'} gap={'16px'}>
+          <Image style={{ margin: 'auto' }} src={AuthLogo} alt='auth-logo-image' width={160} height={116} />
+          <Flex direction={'column'} gap={'15px'}>
             <Text>برای ورود به حساب کاربری شماره تماس خود را وارد کنید.</Text>
-            <Flex pb={'24px'} position={'relative'} width={'100%'} direction={'column'}>
-              <TextField.Root
-                autoFocus
-                id='mobileNumber'
-                {...register('mobileNumber')}
-                size={'3'}
-                placeholder='شماره تماس'
-              />
-              {errors.mobileNumber && (
-                <Text
-                  style={{
-                    color: 'red',
-                    position: 'absolute',
-                    bottom: 0,
-                    fontSize: '12px',
-                    paddingRight: '10px',
-                  }}
-                >
-                  {errors.mobileNumber.message}
-                </Text>
-              )}
-            </Flex>
-            <Button disabled={errors.mobileNumber ? true : false} type='submit' size={'3'}>
+            <TextField
+              type='number'
+              errorText={errors.mobileNumber?.message}
+              autoFocus
+              id='mobileNumber'
+              {...register('mobileNumber')}
+              size={'3'}
+              placeholder='شماره تماس'
+            />
+            <ButtonStyle
+              variant='soft'
+              disabled={errors.mobileNumber ? true : false}
+              type='submit'
+              size={'4'}
+            >
               ورود
-            </Button>
-            <Link href={'/auth/register'}>
-              <Button style={{ width: '100%' }} size={'3'} variant='outline'>
-                ثبت نام
-              </Button>
-            </Link>
+            </ButtonStyle>
           </Flex>
         </Container>
       </Flex>
@@ -133,5 +120,22 @@ const Container = styled(Flex)`
   @media (min-width: 1024px) {
     border: 1px solid #0000002c;
     border-radius: 8px;
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--gray-a3), var(--gray-3) 25%),
+      0 0 0 0.5px var(--black-a1),
+      0 1px 1px 0 var(--gray-a2),
+      0 2px 1px -1px var(--black-a1),
+      0 1px 3px 0 var(--black-a1);
+  }
+`;
+
+const ButtonStyle = styled(Button)`
+  &.rt-Button:where(.rt-r-size-4):where(:not(.rt-variant-ghost)) {
+    color: #fcfcfd;
+    border-radius: 12px;
+    padding: 12px 15px;
+    background-color: #009c9b;
+    max-height: 40px;
+    font-size: 14px;
   }
 `;

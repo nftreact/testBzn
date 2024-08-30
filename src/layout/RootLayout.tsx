@@ -9,7 +9,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
     <>
       <DesktopHeader />
       <MobileHeader />
-      <main style={{ paddingInline: '16px', paddingBlock: '20px 100px' }}>{children}</main>
+      <main style={{ paddingInline: '16px', paddingBlock: '20px 90px' }}>{children}</main>
       <BottomNavigation />
       {/* <Footer /> */}
     </>
