@@ -34,7 +34,7 @@ const CheckboxGroup = ({ items, store, isRow = true }: Props) => {
           }
         };
         return (
-          <Flex gap={'10px'} direction={isRow ? 'row' : 'column'}>
+          <Flex gap={'10px'} wrap={'wrap'} direction={isRow ? 'row' : 'column'}>
             {items.map(item => (
               <Text style={{ textWrap: 'nowrap' }} as='label' size='2' key={item.id}>
                 <Flex gap='2'>

@@ -9,3 +9,4 @@ export { default as Section } from './layout/Section';
 export { default as IconButton } from './components/IconButton';
 export { default as Accordion } from './components/Accordion';
 export { default as TextField } from './components/TextField';
+export { default as Checkbox } from './components/Checkbox';

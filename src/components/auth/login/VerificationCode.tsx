@@ -3,13 +3,17 @@
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
 import { yupResolver } from '@hookform/resolvers/yup';
-import { TextField } from '@radix-ui/themes';
 import styled from 'styled-components';
+import Cookies from 'universal-cookie';
 import * as Yup from 'yup';
 
-import { Button, Flex, Heading, Text } from '@/libs/primitives';
+import { Button, Flex, Text, TextField } from '@/libs/primitives';
 
+import AuthLogo from '../../../../public/image/auth-log.png';
 import Timer from './Timer';
 
 /**
@@ -34,6 +38,8 @@ const VerificationCode = () => {
    * const and variables
    * _______________________________________________________________________________
    */
+  const cookies = new Cookies(null, { path: '/' });
+  const { push } = useRouter();
   const [isEnd, setIsEnd] = useState(false);
   const {
     register,
@@ -54,6 +60,9 @@ const VerificationCode = () => {
    */
   const onSubmit: SubmitHandler<IFormInput> = data => {
     console.log(data);
+
+    cookies.set('Authorization', true);
+    push('/');
     // Handle verification logic here
   };
 
@@ -68,7 +77,7 @@ const VerificationCode = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <Flex width={'100%'} direction={'column'} height={'100vh'}>
+      <Flex width={'100%'} direction={'column'} minHeight={'90vh'}>
         <Container
           p={'24px 16px'}
           width={{ initial: '100%' }}
@@ -76,42 +85,27 @@ const VerificationCode = () => {
           m='auto'
           justify={'between'}
           direction={'column'}
-          gap={'50px'}
+          gap={'40px'}
         >
-          <Heading m={'auto'}>logo</Heading>
+          <Image style={{ margin: 'auto' }} src={AuthLogo} alt='auth-logo-image' width={160} height={116} />
           <Flex direction={'column'} gap={'16px'}>
             <Text>برای ورود به حساب کاربری شماره تماس خود را وارد کنید. </Text>
-            <Flex pb={'18px'} position={'relative'} width={'100%'} direction={'column'}>
-              <TextField.Root
-                autoFocus
-                id='verificationCode'
-                type='text'
-                {...register('verificationCode')}
-                maxLength={VERIFICATION_CODE_LENGTH}
-                size={'3'}
-                placeholder='کد تایید'
-              ></TextField.Root>
-              {errors.verificationCode && (
-                <Text
-                  style={{
-                    color: 'red',
-                    position: 'absolute',
-                    bottom: '-4px',
-                    fontSize: '12px',
-                    paddingRight: '10px',
-                  }}
-                >
-                  {errors.verificationCode.message}
-                </Text>
-              )}
-            </Flex>
-            <Button size={'3'}>ثبت و ادامه</Button>
-            <Button disabled={!isEnd} size={'3'} variant='outline'>
+            <TextField
+              type='number'
+              errorText={errors.verificationCode?.message}
+              autoFocus
+              id='verificationCode'
+              {...register('verificationCode')}
+              size={'3'}
+              placeholder='کد تایید'
+            />
+            <RegisterButton size={'4'}>ثبت و ادامه</RegisterButton>
+            <ResendCodeButton type='button' size={'4'} variant='outline'>
               <Flex gap={'5px'}>
-                <Timer handleEndTime={handleEndTime} />
-                <Text>مانده تا دریافت کد مجدد</Text>
+                {!isEnd && <Timer handleEndTime={handleEndTime} />}
+                {isEnd && <Text>مانده تا دریافت کد مجدد</Text>}
               </Flex>
-            </Button>
+            </ResendCodeButton>
           </Flex>
         </Container>
       </Flex>
@@ -128,5 +122,28 @@ const Container = styled(Flex)`
   @media (min-width: 1024px) {
     border: 1px solid #0000002c;
     border-radius: 8px;
+  }
+`;
+
+const ResendCodeButton = styled(Button)`
+  &.rt-Button:where(.rt-r-size-4):where(:not(.rt-variant-ghost)) {
+    color: #009c9b;
+    padding: 11px 12px;
+    border-radius: 12px;
+    border: 1px solid #009c9b;
+    font-size: 14px;
+    max-height: 40px;
+    outline: none;
+    box-shadow: none;
+  }
+`;
+
+const RegisterButton = styled(Button)`
+  &.rt-Button:where(.rt-r-size-4):where(:not(.rt-variant-ghost)) {
+    border-radius: 12px;
+    background-color: #009c9b;
+    font-size: 14px;
+    padding: 11px 12px;
+    max-height: 40px;
   }
 `;

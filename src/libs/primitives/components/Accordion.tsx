@@ -28,7 +28,7 @@ const Accordion: React.FC<AccordionProps> = ({ triggerText, children }) => {
 
   return (
     <div>
-      <Trigger variant='outline' onClick={toggleAccordion}>
+      <Trigger type='button' variant='outline' onClick={toggleAccordion}>
         <Flex width={'100%'} justify={'between'} align={'center'}>
           {triggerText}
           <CaretDownIcon style={{ scale: 1.6 }} />

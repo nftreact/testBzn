@@ -5,7 +5,7 @@ import { useFormContext } from 'react-hook-form';
 import { Select } from '@radix-ui/themes';
 import { styled } from 'styled-components';
 
-import { Flex } from '@/libs/primitives';
+import { Flex, Text } from '@/libs/primitives';
 
 /**
  * props
@@ -13,12 +13,13 @@ import { Flex } from '@/libs/primitives';
  */
 
 type SelectCompnentProps = {
+  errorText?: string;
   store: string;
   items: Record<string, any>[];
   placeholder: string;
 };
 
-const SelectCompnent = ({ store, items, placeholder }: SelectCompnentProps) => {
+const SelectCompnent = ({ store, items, placeholder, errorText }: SelectCompnentProps) => {
   /**
    * const and variables
    * _______________________________________________________________________________
@@ -40,7 +41,7 @@ const SelectCompnent = ({ store, items, placeholder }: SelectCompnentProps) => {
    * _______________________________________________________________________________
    */
   return (
-    <Root width={'100%'}>
+    <Root width={'100%'} position={'relative'}>
       <Select.Root
         size={'3'}
         value={watch(store)}
@@ -57,6 +58,13 @@ const SelectCompnent = ({ store, items, placeholder }: SelectCompnentProps) => {
           </Select.Group>
         </Select.Content>
       </Select.Root>
+      <Text
+        weight={'medium'}
+        color='red'
+        style={{ position: 'absolute', bottom: '-19px', fontSize: '10px', right: '10px' }}
+      >
+        {errorText}
+      </Text>
     </Root>
   );
 };

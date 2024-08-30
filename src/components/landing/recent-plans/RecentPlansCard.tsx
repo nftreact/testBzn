@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Image from 'next/image';
+
 import styled from 'styled-components';
 
 import { Flex, Text } from '@/libs/primitives';
@@ -7,6 +9,7 @@ import { Flex, Text } from '@/libs/primitives';
 import { RecentPlanCard } from '../types';
 
 const RecentPlansCard: React.FC<RecentPlanCard> = ({
+  image,
   userName,
   creationDate,
   from,
@@ -19,7 +22,7 @@ const RecentPlansCard: React.FC<RecentPlanCard> = ({
     <Root direction={'column'} p={'2'} gap={'10px'}>
       <Flex gap={'10px'}>
         <Flex align={'center'}>
-          <div style={{ borderRadius: '50%', width: '32px', height: '32px', border: '1px solid #000' }} />
+          <Image src={image} alt='recent-plan-image' height={32} width={32} />
         </Flex>
         <Flex direction={'column'}>
           <Text>{userName}</Text>
@@ -35,11 +38,11 @@ const RecentPlansCard: React.FC<RecentPlanCard> = ({
         </Flex>
         <Flex justify={'between'}>
           <Text>تعداد همسفر</Text>
-          <Text>{companionCount}</Text>
+          <Text size={'1'}>{companionCount} روز</Text>
         </Flex>
         <Flex justify={'between'}>
           <Text>تعداد روز</Text>
-          <Text>{travelDays}</Text>
+          <Text size={'1'}>{travelDays} روز</Text>
         </Flex>
       </Flex>
     </Root>
@@ -50,11 +53,17 @@ export default RecentPlansCard;
 
 // Styled components using Radix UI Primitives
 const Root = styled(Flex)`
-  border: 1px solid #6a6a6a;
   border-radius: 8px;
   padding: 8px;
   background-color: #fcfdfc;
   width: 250px;
+
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--gray-a3), var(--gray-3) 25%),
+    0 0 0 0.5px var(--black-a1),
+    0 1px 1px 0 var(--gray-a2),
+    0 2px 1px -1px var(--black-a1),
+    0 1px 3px 0 var(--black-a1);
 
   @media (min-width: 768px) {
     width: 350px;

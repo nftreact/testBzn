@@ -6,6 +6,7 @@ import { Theme } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
 
 import { ReactQueryProvider, StyledComponentsRegistry } from '@/libs/providers';
+import { Yekan } from '@/theme/font.config';
 import '@/theme/globals.css';
 import '@/theme/theme.config.css';
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang='fa' dir='rtl'>
+    <html className={Yekan.variable} lang='fa' dir='rtl'>
       <body>
         <ReactQueryProvider>
           <StyledComponentsRegistry>

@@ -1,26 +1,21 @@
 'use client';
 
-import { useState } from 'react';
-import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
 
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { styled } from 'styled-components';
 
-import { Button, Flex, IconButton, Text } from '@/libs/primitives';
-
-import Menu from './Menu';
+import header_logo from '../../public/image/header-logo.png';
 
 const MobileHeader = () => {
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const toggleDrawer = () => {
-    setIsOpenMenu(prevState => !prevState);
-  };
-
   return (
     <Root>
-      <Flex minWidth={'20%'}>
+      <Link href={'/'}>
+        <Image src={header_logo} width={130} height={32} alt='header-logo' />
+      </Link>
+      {/* <Flex minWidth={'20%'}>
         <IconButton onClick={toggleDrawer} style={{ border: '1px solid #000' }} size={'3'}>
           m
         </IconButton>
@@ -49,7 +44,7 @@ const MobileHeader = () => {
         <Link href={'/auth/register'}>
           <Button variant='soft'>عضویت</Button>
         </Link>
-      </Flex>
+      </Flex> */}
     </Root>
   );
 };
@@ -57,7 +52,13 @@ const MobileHeader = () => {
 export default MobileHeader;
 
 const Root = styled.header`
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 4px;
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--gray-a3), var(--gray-3) 25%),
+    0 0 0 0.5px var(--black-a1),
+    0 1px 1px 0 var(--gray-a2),
+    0 2px 1px -1px var(--black-a1),
+    0 1px 3px 0 var(--black-a1);
+
   display: block;
   padding: 16px 20px;
   display: flex;
@@ -68,7 +69,7 @@ const Root = styled.header`
   background-color: #fff;
   z-index: 10;
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     display: none;
   }
 

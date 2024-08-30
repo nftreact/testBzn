@@ -10,8 +10,10 @@ import TimePicker from 'react-multi-date-picker/plugins/time_picker';
 import { styled } from 'styled-components';
 
 import { Flex } from '../primitives';
+import ErrorText from './ErrorText';
 
 type TimePickerProps = {
+  errorText?: string;
   inputMode: 'text' | 'none';
   name: string;
 } & React.HTMLAttributes<HTMLInputElement>;
@@ -21,7 +23,7 @@ type TimePickerProps = {
  * _______________________________________________________________________________
  */
 
-const TimePickerComponent = forwardRef<HTMLInputElement, TimePickerProps>(({ name }) => {
+const TimePickerComponent = forwardRef<HTMLInputElement, TimePickerProps>(({ name, errorText }) => {
   const { control, setValue } = useFormContext();
 
   return (
@@ -29,7 +31,7 @@ const TimePickerComponent = forwardRef<HTMLInputElement, TimePickerProps>(({ nam
       name={name}
       control={control}
       render={() => (
-        <Root position={'relative'} align={'center'}>
+        <Root pb={'10px'} position={'relative'} align={'center'}>
           <DatePicker
             inputMode='none'
             inputClass='input-class'
@@ -43,7 +45,8 @@ const TimePickerComponent = forwardRef<HTMLInputElement, TimePickerProps>(({ nam
             format='HH:mm:ss'
             plugins={[<TimePicker key={'time'} />]}
           />
-          <IoMdTime style={{ position: 'absolute', left: '20px', scale: 1.2 }} />
+          <IoMdTime style={{ position: 'absolute', left: '20px', scale: 1.2, fill: '#C3A437' }} />
+          <ErrorText text={errorText} />
         </Root>
       )}
     />
@@ -66,11 +69,20 @@ const Root = styled(Flex)`
   }
 
   .input-class {
-    padding: 15px 11px;
+    --default-font-family: var(--yekan-font) !important;
+    font-family: var(--yekan-font) !important;
     border-radius: 8px;
-    border: 1px solid #6a6a6a9b;
     text-align: right;
-    background-color: #fff;
+    background-color: #f9f9fb;
     width: -webkit-fill-available;
+    padding: 15px 16px;
+    outline: none;
+    border: none;
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--gray-a3), var(--gray-3) 25%),
+      0 0 0 0.5px var(--black-a1),
+      0 1px 1px 0 var(--gray-a2),
+      0 2px 1px -1px var(--black-a1),
+      0 1px 3px 0 var(--black-a1);
   }
 `;

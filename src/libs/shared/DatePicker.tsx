@@ -7,14 +7,17 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { LuCalendarCheck } from 'react-icons/lu';
 import DatePicker, { DateObject } from 'react-multi-date-picker';
 
-import { Flex } from '@radix-ui/themes';
 import { styled } from 'styled-components';
+
+import { Flex } from '../primitives';
+import ErrorText from './ErrorText';
 
 /**
  * props
  * _______________________________________________________________________________
  */
 type DatePickerComponent = {
+  errorText?: string;
   inputMode: 'none' | 'text';
   name: string;
   minDate?: Date;
@@ -23,44 +26,56 @@ type DatePickerComponent = {
 } & React.HTMLAttributes<HTMLInputElement>;
 
 const DatePickerComponent = forwardRef<HTMLInputElement, DatePickerComponent>(
-  ({ name, minDate, placeholder = 'تاریخ', calendarPosition = 'bottom-right', inputMode, ...rest }, ref) => {
+  (
+    {
+      name,
+      minDate,
+      placeholder = 'تاریخ',
+      calendarPosition = 'bottom-right',
+      errorText,
+      inputMode,
+      ...rest
+    },
+    ref
+  ) => {
     const { control, setValue } = useFormContext();
 
     return (
-      <Controller
-        name={name}
-        control={control}
-        render={({ field }) => (
-          <Root position={'relative'} align={'center'}>
-            <DatePicker
-              inputMode={inputMode}
-              inputClass={`input-class`}
-              {...rest}
-              {...ref}
-              //   inputClass='input-class'
-              value={field.value}
-              placeholder={placeholder}
-              minDate={minDate || new Date()}
-              calendar={persian}
-              locale={persian_fa}
-              calendarPosition={calendarPosition}
-              onChange={(dateObject: DateObject | DateObject[] | null) => {
-                const formattedDate = Array.isArray(dateObject)
-                  ? dateObject.map(d => d.format()).join(', ')
-                  : dateObject?.format() || '';
-                setValue(name, formattedDate);
-              }}
-            />
-            <LuCalendarCheck style={{ position: 'absolute', left: '20px' }} />
-          </Root>
-        )}
-      />
+      <Flex position={'relative'} pb={'10px'} direction={'column'}>
+        <Controller
+          name={name}
+          control={control}
+          render={({ field }) => (
+            <Root position={'relative'} align={'center'}>
+              <DatePicker
+                inputMode={inputMode}
+                inputClass={`input-class`}
+                {...rest}
+                {...ref}
+                value={field.value}
+                placeholder={placeholder}
+                minDate={minDate || new Date()}
+                calendar={persian}
+                locale={persian_fa}
+                calendarPosition={calendarPosition}
+                onChange={(dateObject: DateObject | DateObject[] | null) => {
+                  const formattedDate = Array.isArray(dateObject)
+                    ? dateObject.map(d => d.format()).join(', ')
+                    : dateObject?.format() || '';
+                  setValue(name, formattedDate);
+                }}
+              />
+              <LuCalendarCheck style={{ position: 'absolute', left: '20px', stroke: '#C3A437' }} />
+            </Root>
+          )}
+        />
+        <ErrorText text={errorText} />
+      </Flex>
     );
   }
 );
 
 DatePickerComponent.displayName = 'DatePickerComponent';
-
 export default DatePickerComponent;
 
 /**
@@ -80,11 +95,20 @@ const Root = styled(Flex)`
   }
 
   .input-class {
-    padding: 10px;
+    --default-font-family: var(--yekan-font) !important;
+    font-family: var(--yekan-font) !important;
     border-radius: 8px;
     width: 100%;
-    border: 1px solid #6a6a6a9b;
     text-align: right;
-    background-color: #fff;
+    background-color: #f9f9fb;
+    padding: 15px 16px;
+    outline: none;
+    border: none;
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--gray-a3), var(--gray-3) 25%),
+      0 0 0 0.5px var(--black-a1),
+      0 1px 1px 0 var(--gray-a2),
+      0 2px 1px -1px var(--black-a1),
+      0 1px 3px 0 var(--black-a1);
   }
 `;

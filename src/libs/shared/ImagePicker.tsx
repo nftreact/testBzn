@@ -1,12 +1,15 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode } from 'react';
 import Dropzone from 'react-dropzone';
+import { Controller, useFormContext } from 'react-hook-form';
 
 import { Flex } from '../primitives';
+import ErrorText from './ErrorText';
 
 type Props = {
+  name: string;
   children: ReactNode;
-  handleImagePicker: (value: string) => void;
   defaultImage?: string;
+  errorText?: string;
 };
 
 export const urlToObject = async (image: string) => {
@@ -16,36 +19,41 @@ export const urlToObject = async (image: string) => {
   return file;
 };
 
-const ImagePicker = ({ children, handleImagePicker, defaultImage }: Props) => {
-  const [image, setImage] = useState(defaultImage);
+const ImagePicker = ({ name, children, errorText }: Props) => {
+  const { control } = useFormContext();
 
-  const onDrop = (files: File[]) => {
+  const onDrop = (files: File[], onChange: (value: File) => void) => {
     if (files && files[0]) {
-      setImage(URL.createObjectURL(files[0]));
-      handleImagePicker(image as string);
+      const selectedImage = files[0];
+      onChange(URL.createObjectURL(selectedImage) as any); // Update the form state with the selected file
     }
   };
 
-  console.log(image, 'image');
-
   return (
-    <>
-      <Dropzone
-        onDrop={onDrop}
-        accept={{
-          'image/*': ['.jpeg', '.png'],
-        }}
-      >
-        {({ getRootProps, getInputProps }) => (
-          <div {...getRootProps()}>
-            <input {...getInputProps()} />
-            <Flex gap={'2'} justify={'center'} direction={'column'} align={'center'}>
-              {children}
-            </Flex>
-          </div>
-        )}
-      </Dropzone>
-    </>
+    <Controller
+      name={name}
+      control={control}
+      render={({ field }) => (
+        <Flex position={'relative'} direction={'column'} pb='10px'>
+          <Dropzone
+            onDrop={files => onDrop(files, field.onChange)}
+            accept={{
+              'image/*': ['.jpeg', '.png'],
+            }}
+          >
+            {({ getRootProps, getInputProps }) => (
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <Flex gap={'2'} justify={'center'} direction={'column'} align={'center'}>
+                  {children}
+                </Flex>
+              </div>
+            )}
+          </Dropzone>
+          {errorText && <ErrorText text={errorText} />}
+        </Flex>
+      )}
+    />
   );
 };
 

@@ -1,33 +1,39 @@
-export interface FormData {
+export type FormData = {
   firstName: string;
   lastName: string;
   birthDate: string;
   gender: string;
   email: string;
   isTourLeader: boolean;
-  activityDuration: number;
-  activityProvince: string;
-  specialtyOne: string;
-  specialtyTwo: string;
-  aboutMe: string;
-  cardIssueDate: string;
-  cardExpiryDate: string;
-  languages: string[];
-}
+  activityDuration?: number;
+  Province?: string;
+  city?: string;
+  specialtyOne?: string;
+  specialtyTwo?: string;
+  aboutMe?: string;
+  cardIssueDate?: string;
+  cardExpiryDate?: string;
+  languages?: string[];
+  image?: string; // Add the image field
+  national_card_image?: string;
+};
 
 export const defaultFormValues: FormData = {
+  image: undefined,
   firstName: '',
   lastName: '',
   birthDate: '',
   gender: '',
   email: '',
   isTourLeader: false,
-  activityDuration: 0,
-  activityProvince: '',
+  activityDuration: undefined,
+  Province: '',
+  city: '',
   specialtyOne: '',
   specialtyTwo: '',
   aboutMe: '',
   cardIssueDate: '',
   cardExpiryDate: '',
+  national_card_image: '',
   languages: [],
 };

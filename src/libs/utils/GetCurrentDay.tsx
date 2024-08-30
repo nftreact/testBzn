@@ -24,5 +24,3 @@ const month = farsiMonths[currentDate.getMonth()];
 
 // Combining the word: "امروز" with the day and month:
 export const formattedDate = `امروز ${day} ${month}`;
-
-// console.log(formattedDate); // Output: "امروز 29 مرداد"

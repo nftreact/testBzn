@@ -20,7 +20,6 @@ const Timer = ({ handleEndTime }: TimerProps) => {
    * _______________________________________________________________________________
    */
   const { minutes, seconds, isEnded } = useCountdown(120000); // 2 minutes in milliseconds
-  console.log(minutes, seconds, isEnded);
 
   useEffect(() => {
     if (isEnded) {
